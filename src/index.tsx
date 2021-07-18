@@ -7,6 +7,7 @@ import { ViewSinglePost } from './components/ViewSinglePost/ViewSinglePost';
 
 ReactDOM.render(
   <React.StrictMode>
+    <div className="horizontalLine" />
     <Router>
       <Switch>
         <Route path="/single">
