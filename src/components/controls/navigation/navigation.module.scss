@@ -1,0 +1,10 @@
+.navigationContainer {
+  box-shadow: 0 0 1em #898989;
+
+  .centerItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 3.4em;
+  }
+}

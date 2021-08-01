@@ -1,6 +1,6 @@
 import { Stack } from '@fluentui/react';
 import React from 'react';
-import { Naviagtion } from '../controls/navigation';
+import { Naviagtion } from '../controls/navigation/navigation';
 import styles from './HomeView.module.scss';
 
 export const HomeView = () => {
@@ -8,12 +8,6 @@ export const HomeView = () => {
 
   return (
     <Stack className={styles.homeView}>
-      <Stack className={styles.headLogo} horizontalAlign="center">
-        ajot.xyz
-      </Stack>
-      <Stack>
-        <Naviagtion />
-      </Stack>
       <Stack horizontal horizontalAlign="space-around" wrap tokens={{ childrenGap: 15 }}>
         {mockData.map((i) => (
           <Stack.Item key={i} className={styles.card}>
