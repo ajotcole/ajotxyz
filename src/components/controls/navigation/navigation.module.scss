@@ -1,10 +1,18 @@
 .navigationContainer {
   box-shadow: 0 0 1em #898989;
+  z-index: 99;
+  position: fixed;
+  width: 100%;
+  background-color: #fff;
 
   .centerItem {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 3.4em;
+    min-height: 4em;
+  }
+
+  .icons {
+    font-size: 50px;
   }
 }
