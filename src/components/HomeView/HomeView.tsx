@@ -1,6 +1,7 @@
 import { Stack } from '@fluentui/react';
 import React from 'react';
 import { HeroTemplate } from '../contentTemplates/homepage/hero/heroTemplate';
+import { ContentCard } from '../controls/card/card';
 import styles from './HomeView.module.scss';
 
 export const HomeView = () => {
@@ -10,12 +11,11 @@ export const HomeView = () => {
     <>
       <HeroTemplate />
       <Stack className={styles.homeView}>
-        <div className={styles.heading}>Test Überschrift</div>
-        <Stack horizontal horizontalAlign="space-around" wrap tokens={{ childrenGap: 15 }}>
+        <div className={styles.heading}>All Articles</div>
+        <div className={styles.seperator} />
+        <Stack horizontal horizontalAlign="space-between" wrap tokens={{ childrenGap: 10 }}>
           {mockData.map((i) => (
-            <Stack.Item key={i} className={styles.card}>
-              {i}
-            </Stack.Item>
+            <ContentCard content={i} key={i} />
           ))}
         </Stack>
       </Stack>
