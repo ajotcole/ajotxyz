@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import { HomeView } from './components/HomeView/HomeView';
+import { HomeView } from './components/pages/HomeView/HomeView';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { ViewSinglePost } from './components/ViewSinglePost/ViewSinglePost';
+import { ViewSinglePost } from './components/pages/ViewSinglePost/ViewSinglePost';
 import { Naviagtion } from './components/controls/navigation/navigation';
+import { Footer } from './components/controls/footer/footer';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -20,6 +21,7 @@ ReactDOM.render(
         </Route>
       </Switch>
     </Router>
+    <Footer/>
   </React.StrictMode>,
   document.getElementById('root'),
 );

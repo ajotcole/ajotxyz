@@ -1,5 +1,7 @@
 import { Stack } from '@fluentui/react';
 import styles from './card.module.scss';
+import { CgCalendarDates } from "react-icons/cg";
+import { formatDate } from '../../../utility';
 
 export const ContentCard = (props: { content: number }) => {
   console.log(props.content);
@@ -12,7 +14,7 @@ export const ContentCard = (props: { content: number }) => {
           <div className={styles.category}>category</div>
           <div className={styles.heading}>Heading</div>
           <div className={styles.seperator} />
-          <div className={styles.date}>{new Date().toLocaleDateString()}</div>
+          <div className={styles.date}><CgCalendarDates/>{formatDate(new Date())}</div>
         </Stack>
       </Stack>
     </a>
