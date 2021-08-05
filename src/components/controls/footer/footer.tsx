@@ -4,9 +4,9 @@ export const Footer = () => {
   return <footer className={styles.footerContainer}>
       <Stack className={styles.contentContainer}>
           <Stack horizontal horizontalAlign="space-around" wrap tokens={{ childrenGap: 10 }}>
-              <div>Erster Bereich</div>
-              <div>Zweiter Bereich</div>
+              <div className={styles.contentSection}>Erster Bereich</div>
+              <div className={styles.contentSection}>Zweiter Bereich</div>
           </Stack>
-          <Stack.Item align="center">© 2021 ajot.xyz</Stack.Item>
+          <Stack.Item className={styles.copyrightName} align="center">© 2021 ajot.xyz</Stack.Item>
       </Stack></footer>;
 };
