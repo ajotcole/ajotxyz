@@ -4,6 +4,7 @@
   position: fixed;
   width: 100%;
   background-color: #fff;
+  padding: 0 20px;
 
   .centerItem {
     display: flex;
@@ -13,6 +14,13 @@
   }
 
   .icons {
-    font-size: 50px;
+    font-size: 18px;
+  }
+
+  .fontLogo {
+    text-transform: uppercase;
+    font-family: 'Karla', sans-serif;
+    letter-spacing: 2px;
+    font-size: 22px;
   }
 }

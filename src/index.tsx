@@ -6,16 +6,19 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ViewSinglePost } from './components/pages/ViewSinglePost/ViewSinglePost';
 import { Naviagtion } from './components/controls/navigation/navigation';
 import { Footer } from './components/controls/footer/footer';
+import { initializeIcons } from '@fluentui/react';
+
+
+initializeIcons();
 
 ReactDOM.render(
   <React.StrictMode>
     <Naviagtion />
     <Router>
       <Switch>
-        <Route path="/single">
+        <Route path="/articles/:id">
           <ViewSinglePost />
         </Route>
-
         <Route path="/">
           <HomeView />
         </Route>

@@ -18,6 +18,8 @@ export const HomeView = () => {
     
   }, [])
 
+  document.title = "ajot.xyz - Home"
+
   return (
     <>
       <HeroTemplate />
