@@ -1,3 +1,7 @@
 export interface IArticle {
-    title: string
+  id: number;
+  title: string;
+  created: Date;
+  category: string;
+  cover: string;
 }

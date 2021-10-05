@@ -1,11 +1,22 @@
 import { Stack } from '@fluentui/react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { IArticle } from '../../../models/IArticle';
+import { ArticlesService } from '../../../services/articlesService';
 import { HeroTemplate } from '../../contentTemplates/homepage/hero/heroTemplate';
 import { ContentCard } from '../../controls/card/card';
 import styles from './HomeView.module.scss';
 
 export const HomeView = () => {
-  const mockData = [1, 2, 3, 4, 5, 6];
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [items, setItems] = useState<IArticle[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      setItems(await ArticlesService.getAllArticles())
+      setIsLoaded(true)
+    })()
+    
+  }, [])
 
   return (
     <>
@@ -14,9 +25,15 @@ export const HomeView = () => {
         <div className={styles.heading}>All Articles</div>
         <div className={styles.seperator} />
         <Stack horizontal horizontalAlign="space-between" wrap tokens={{ childrenGap: 10 }}>
-          {mockData.map((i) => (
-            <ContentCard content={i} key={i} />
-          ))}
+    {
+      isLoaded ? items && items.map((i, index) => (
+        <ContentCard content={i} key={index} />
+      )) : <div>Loading</div>
+    }
+
+
+          
+          {console.log(items)}
         </Stack>
       </Stack>
     </>
