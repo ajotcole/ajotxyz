@@ -3,14 +3,14 @@ import styles from './navigation.module.scss';
 
 export const Naviagtion = () => {
   return (
-    <Stack horizontal className={styles.navigationContainer} tokens={{ childrenGap: 10}}>
+    <Stack horizontal className={styles.navigationContainer} tokens={{ childrenGap: 10 }}>
       <Stack.Item align="center">
         <FontIcon className={styles.icons} iconName="Search" />
       </Stack.Item>
       <Stack.Item className={styles.centerItem} grow={3} align="center">
-        <div className={styles.fontLogo}>
+        <a href="/" className={styles.fontLogo}>
           ajot.xyz
-        </div>
+        </a>
       </Stack.Item>
       <Stack.Item align="center">
         <FontIcon className={styles.icons} iconName="GlobalNavButton" />

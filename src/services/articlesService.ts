@@ -11,9 +11,9 @@ export class ArticlesService {
       data.push({
         id: r.id,
         title: r.title,
-        created: new Date(r.Date),
+        created: new Date(r.date),
         category: r.category,
-        cover: r.cover?.formats.thumbnail.url,
+        cover: r.cover?.formats.small.url,
       } as IArticle),
     );
 
@@ -21,12 +21,23 @@ export class ArticlesService {
   }
 
   public static getAllArticlesHome() {
-      // gets lightweight list just for cards
-      return "TODO"
+    // gets lightweight list just for cards
+    return 'TODO';
   }
 
-  public static getSingleArticle() {
+  public static async getSingleArticle(id: number) {
     //   Gets data for a single article
-      return "TODO"
+    const response = await fetch(`https://strapi.ajot.dev/dev-posts/${id}`);
+    const article = await response.json();
+    const data: IArticle = {
+      id: article.id,
+      title: article.title,
+      created: new Date(article.date),
+      category: article.category,
+      cover: article.cover?.formats.large.url,
+      content: article.content,
+    } as IArticle;
+
+    return data;
   }
 }

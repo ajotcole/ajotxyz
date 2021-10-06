@@ -15,7 +15,6 @@ export const HomeView = () => {
       setItems(await ArticlesService.getAllArticles())
       setIsLoaded(true)
     })()
-    
   }, [])
 
   document.title = "ajot.xyz - Home"

@@ -4,4 +4,5 @@ export interface IArticle {
   created: Date;
   category: string;
   cover: string;
+  content?: string;
 }
