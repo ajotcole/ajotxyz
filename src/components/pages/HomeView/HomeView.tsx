@@ -1,5 +1,5 @@
 import { Stack } from '@fluentui/react';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IArticle } from '../../../models/IArticle';
 import { ArticlesService } from '../../../services/articlesService';
 import { HeroTemplate } from '../../contentTemplates/homepage/hero/heroTemplate';
@@ -12,12 +12,12 @@ export const HomeView = () => {
 
   useEffect(() => {
     (async () => {
-      setItems(await ArticlesService.getAllArticles())
-      setIsLoaded(true)
-    })()
-  }, [])
+      setItems(await ArticlesService.getAllArticles());
+      setIsLoaded(true);
+    })();
+  }, []);
 
-  document.title = "ajot.xyz - Home"
+  document.title = 'ajot.xyz - Home';
 
   return (
     <>
@@ -26,14 +26,8 @@ export const HomeView = () => {
         <div className={styles.heading}>All Articles</div>
         <div className={styles.seperator} />
         <Stack horizontal horizontalAlign="space-between" wrap tokens={{ childrenGap: 10 }}>
-    {
-      isLoaded ? items && items.map((i, index) => (
-        <ContentCard content={i} key={index} />
-      )) : <div>Loading</div>
-    }
+          {isLoaded ? items && items.map((i, index) => <ContentCard content={i} key={index} />) : <div>Loading</div>}
 
-
-          
           {console.log(items)}
         </Stack>
       </Stack>

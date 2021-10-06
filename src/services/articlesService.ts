@@ -1,4 +1,5 @@
 import { IArticle } from '../models/IArticle';
+import { IHomeHero } from '../models/IHomeHero';
 
 export class ArticlesService {
   public static async getAllArticles() {
@@ -37,6 +38,18 @@ export class ArticlesService {
       cover: article.cover?.formats.large.url,
       content: article.content,
     } as IArticle;
+
+    return data;
+  }
+
+  public static async getHomeHeroData() {
+    const response = await fetch('https://strapi.ajot.dev/home-hero-content');
+    const content = await response.json();
+    const data: IHomeHero = {
+      title: content.title,
+      description: content.description,
+      image: content.image?.formats.large.url,
+    } as IHomeHero;
 
     return data;
   }

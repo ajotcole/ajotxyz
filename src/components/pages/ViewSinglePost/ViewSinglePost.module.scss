@@ -25,15 +25,16 @@
 
     // Large
     @media (min-width: 1200px) {
-      min-width: 1200px;
-      max-width: 1200px;
+      min-width: 800px;
+      max-width: 800px;
     }
 
     h1 {
       font-family: 'DM Serif Display', serif;
       font-size: 50px;
       font-weight: normal;
-      margin: 0;
+      margin: 5px 0 20px 0;
+      line-height: 45px;
     }
 
     .category {
@@ -49,6 +50,42 @@
       background-position: center;
       background-size: cover;
       background-color: #000;
+    }
+
+    .seperator {
+      background-color: #000;
+      display: block;
+      height: 1px;
+      width: 100%;
+    }
+
+    .date {
+      margin: 1em 0;
+      font-family: 'Karla', sans-serif;
+      letter-spacing: 2px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+
+      svg {
+        margin-right: 0.5em;
+      }
+    }
+
+    .richText {
+      margin: 15px 0;
+
+      p {
+        line-height: 30px;
+        font-family: 'Heebo', sans-serif;
+      }
+
+      h2 {
+        font-family: 'DM Serif Display', serif;
+        font-weight: normal;
+        font-size: 30px;
+        margin: 10px 0;
+      }
     }
   }
 }
