@@ -25,7 +25,7 @@ export const HomeView = () => {
       <Stack className={styles.homeView}>
         <div className={styles.heading}>All Articles</div>
         <div className={styles.seperator} />
-        <Stack horizontal horizontalAlign="space-between" wrap tokens={{ childrenGap: 10 }}>
+        <Stack horizontal horizontalAlign="start" wrap tokens={{ childrenGap: 20 }}>
           {isLoaded ? items && items.map((i, index) => <ContentCard content={i} key={index} />) : <div>Loading</div>}
 
           {console.log(items)}

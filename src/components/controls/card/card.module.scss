@@ -4,6 +4,7 @@
 
   .card {
     min-width: 360px;
+    max-width: 360px;
     margin-bottom: 1em;
     .cardImage {
       background-image: url(https://picsum.photos/1000);
@@ -28,6 +29,7 @@
         font-family: 'DM Serif Display', serif;
         font-size: 30px;
         margin-bottom: 0.5em;
+        text-overflow: ellipsis;
       }
 
       .seperator {

@@ -23,6 +23,8 @@ export const ViewSinglePost = () => {
 
   document.title = `ajot.xyz - ${item?.title}`;
 
+  console.log(item?.content);
+
   return (
     <div className={styles.articleContainer}>
       {isLoaded ? (
