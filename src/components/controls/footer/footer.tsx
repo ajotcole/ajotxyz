@@ -9,7 +9,9 @@ export const Footer = () => {
     <footer className={styles.footerContainer}>
       <Stack className={styles.contentContainer}>
         <Stack.Item className={styles.contentSection} align="center">
-          <div onClick={() => openPanel()}>Impressum</div>
+          <div className={styles.imprint} onClick={() => openPanel()}>
+            Impressum
+          </div>
         </Stack.Item>
         <Stack.Item className={styles.copyrightName} align="center">
           © 2021 ajot.xyz

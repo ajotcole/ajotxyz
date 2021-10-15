@@ -1,4 +1,4 @@
-import { FontIcon, Panel, Stack, Tooltip, TooltipHost } from '@fluentui/react';
+import { FontIcon, Panel, Stack, TooltipHost } from '@fluentui/react';
 import styles from './navigation.module.scss';
 import { useBoolean } from '@fluentui/react-hooks';
 
