@@ -1,6 +1,7 @@
 import { FontIcon, Panel, Stack, Tooltip, TooltipHost } from '@fluentui/react';
 import styles from './navigation.module.scss';
 import { useBoolean } from '@fluentui/react-hooks';
+import { versionNumber } from '../../..';
 
 export const Naviagtion = () => {
   const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] = useBoolean(false);
@@ -24,7 +25,7 @@ export const Naviagtion = () => {
       </Stack>
       <Panel isLightDismiss isOpen={isOpen} onDismiss={dismissPanel} closeButtonAriaLabel="Close" headerText="Soon to be Menu">
         <p>
-          Version <b>1.0.0.4</b>
+          Version <b>{versionNumber}</b>
         </p>
         <p>
           Last Updated on <b>14.10.2021</b>

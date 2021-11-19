@@ -1,4 +1,4 @@
-import { Stack } from '@fluentui/react';
+import { Spinner, SpinnerSize, Stack } from '@fluentui/react';
 import { useState, useEffect } from 'react';
 import { CgCalendarDates } from 'react-icons/cg';
 import ReactMarkdown from 'react-markdown';
@@ -47,7 +47,7 @@ export const ViewSinglePost = () => {
           </Stack>
         )
       ) : (
-        <div>Data is loading</div>
+        <Spinner className={styles.spinnerStyle} size={SpinnerSize.large} />
       )}
     </div>
   );
