@@ -1,6 +1,6 @@
 import { Spinner, SpinnerSize, Stack } from '@fluentui/react';
 import { useState, useEffect } from 'react';
-import { CgCalendarDates } from 'react-icons/cg';
+import { CgCalendarDates, CgUser } from 'react-icons/cg';
 import ReactMarkdown from 'react-markdown';
 import { useParams } from 'react-router-dom';
 import { IArticle } from '../../../models/IArticle';
@@ -23,8 +23,6 @@ export const ViewSinglePost = () => {
 
   document.title = `ajot.xyz - ${item?.title}`;
 
-  console.log(item?.content);
-
   return (
     <div className={styles.articleContainer}>
       {isLoaded ? (
@@ -33,10 +31,17 @@ export const ViewSinglePost = () => {
             <div className={styles.category}>{item.category}</div>
             <h1>{item.title}</h1>
             <div className={styles.seperator} />
-            <div className={styles.date}>
-              <CgCalendarDates />
-              {formatDate(item.created)}
-            </div>
+            <Stack horizontal className={styles.metadata} horizontalAlign="space-between" tokens={{ childrenGap: 3000 }}>
+              <div className={styles.date}>
+                <CgCalendarDates />
+                {formatDate(item.created)}
+              </div>
+              <div className={styles.author}>
+                <CgUser />
+                AJ Cole
+              </div>
+            </Stack>
+
             <div
               className={styles.coverImage}
               style={{

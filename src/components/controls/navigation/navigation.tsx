@@ -11,7 +11,7 @@ export const Naviagtion = () => {
       <Stack horizontal className={styles.navigationContainer} tokens={{ childrenGap: 10 }}>
         <Stack.Item align="center">
           <TooltipHost content="Coming soon...">
-            <FontIcon className={styles.icons} iconName="Search" />
+            <FontIcon className={styles.searchIcon} iconName="Search" />
           </TooltipHost>
         </Stack.Item>
         <Stack.Item className={styles.centerItem} grow={3} align="center">
