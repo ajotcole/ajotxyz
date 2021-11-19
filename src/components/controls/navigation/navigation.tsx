@@ -1,7 +1,7 @@
 import { FontIcon, Panel, Stack, Tooltip, TooltipHost } from '@fluentui/react';
 import styles from './navigation.module.scss';
 import { useBoolean } from '@fluentui/react-hooks';
-import { versionNumber } from '../../..';
+import { changedDate, versionNumber } from '../../..';
 
 export const Naviagtion = () => {
   const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] = useBoolean(false);
@@ -28,7 +28,7 @@ export const Naviagtion = () => {
           Version <b>{versionNumber}</b>
         </p>
         <p>
-          Last Updated on <b>14.10.2021</b>
+          Last Updated on <b>{changedDate}</b>
         </p>
       </Panel>
     </>
