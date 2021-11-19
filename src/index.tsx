@@ -8,6 +8,8 @@ import { Naviagtion } from './components/controls/navigation/navigation';
 import { Footer } from './components/controls/footer/footer';
 import { initializeIcons } from '@fluentui/react';
 
+export const versionNumber = '1.0.0.6';
+export const changedDate = '19.11.2021';
 
 initializeIcons();
 
@@ -24,7 +26,7 @@ ReactDOM.render(
         </Route>
       </Switch>
     </Router>
-    <Footer/>
+    <Footer />
   </React.StrictMode>,
   document.getElementById('root'),
 );

@@ -2,6 +2,11 @@
   padding-top: 56px;
   min-height: calc(100vh - 120px);
 
+  .spinnerStyle {
+    margin-top: 200px;
+    width: 100%;
+  }
+
   .articleContent {
     display: block;
     margin: auto;
@@ -59,7 +64,24 @@
       width: 100%;
     }
 
+    .metadata {
+      width: 100%;
+    }
+
     .date {
+      margin: 1em 0;
+      font-family: 'Karla', sans-serif;
+      letter-spacing: 2px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+
+      svg {
+        margin-right: 0.5em;
+      }
+    }
+
+    .author {
       margin: 1em 0;
       font-family: 'Karla', sans-serif;
       letter-spacing: 2px;

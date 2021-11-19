@@ -1,6 +1,7 @@
 import { FontIcon, Panel, Stack, TooltipHost } from '@fluentui/react';
 import styles from './navigation.module.scss';
 import { useBoolean } from '@fluentui/react-hooks';
+import { changedDate, versionNumber } from '../../..';
 
 export const Naviagtion = () => {
   const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] = useBoolean(false);
@@ -10,7 +11,7 @@ export const Naviagtion = () => {
       <Stack horizontal className={styles.navigationContainer} tokens={{ childrenGap: 10 }}>
         <Stack.Item align="center">
           <TooltipHost content="Coming soon...">
-            <FontIcon className={styles.icons} iconName="Search" />
+            <FontIcon className={styles.searchIcon} iconName="Search" />
           </TooltipHost>
         </Stack.Item>
         <Stack.Item className={styles.centerItem} grow={3} align="center">
@@ -24,10 +25,10 @@ export const Naviagtion = () => {
       </Stack>
       <Panel isLightDismiss isOpen={isOpen} onDismiss={dismissPanel} closeButtonAriaLabel="Close" headerText="Soon to be Menu">
         <p>
-          Version <b>1.0.0.4</b>
+          Version <b>{versionNumber}</b>
         </p>
         <p>
-          Last Updated on <b>14.10.2021</b>
+          Last Updated on <b>{changedDate}</b>
         </p>
       </Panel>
     </>
