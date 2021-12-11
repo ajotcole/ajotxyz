@@ -1,8 +1,8 @@
 import { Stack } from '@fluentui/react';
 import styles from './card.module.scss';
 import { CgCalendarDates } from 'react-icons/cg';
-import { formatDate } from '../../../utility';
-import { IArticle } from '../../../models/IArticle';
+import { formatDate } from '../../utility';
+import { IArticle } from '../../models/IArticle';
 
 export const ContentCard = (props: { content: IArticle }) => {
   return (

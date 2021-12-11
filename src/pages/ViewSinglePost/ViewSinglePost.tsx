@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react';
 import { CgCalendarDates, CgUser } from 'react-icons/cg';
 import ReactMarkdown from 'react-markdown';
 import { useParams } from 'react-router-dom';
-import { IArticle } from '../../../models/IArticle';
-import { ArticlesService } from '../../../services/articlesService';
-import { formatDate } from '../../../utility';
+import { IArticle } from '../../models/IArticle';
+import { ArticlesService } from '../../services/articlesService';
+import { formatDate } from '../../utility';
 import styles from './ViewSinglePost.module.scss';
 
 export const ViewSinglePost = () => {
@@ -48,7 +48,9 @@ export const ViewSinglePost = () => {
                 backgroundImage: `${item.cover ? `url("https://strapi.ajot.dev${item.cover}")` : 'url("https://picsum.photos/1000")'}`,
               }}
             />
-            <ReactMarkdown className={styles.richText}>{item.content || ''}</ReactMarkdown>
+            <ReactMarkdown className={styles.richText} components={{ details: () => <div>Test</div> }}>
+              {''}
+            </ReactMarkdown>
           </Stack>
         )
       ) : (

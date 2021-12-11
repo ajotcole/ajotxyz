@@ -36,7 +36,7 @@ export class ArticlesService {
       created: new Date(article.date),
       category: article.category,
       cover: article.cover?.formats.large.url,
-      content: article.content.replace(/\(/g, '(https://strapi.ajot.dev'),
+      dynamicZone: article?.dynamicZone,
     } as IArticle;
 
     return data;
