@@ -30,6 +30,7 @@ export class ArticlesService {
     //   Gets data for a single article
     const response = await fetch(`https://strapi.ajot.dev/dev-posts/${id}`);
     const article = await response.json();
+
     const data: IArticle = {
       id: article.id,
       title: article.title,
