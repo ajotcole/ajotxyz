@@ -1,7 +1,7 @@
 import { DefaultButton, Stack } from '@fluentui/react';
 import { useState, useEffect } from 'react';
-import { IHomeHero } from '../../../../models/IHomeHero';
-import { ArticlesService } from '../../../../services/articlesService';
+import { IHomeHero } from '../../models/IHomeHero';
+import { ArticlesService } from '../../services/articlesService';
 import styles from './heroTemplate.module.scss';
 
 export const HeroTemplate = () => {

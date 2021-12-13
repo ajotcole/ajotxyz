@@ -30,13 +30,14 @@ export class ArticlesService {
     //   Gets data for a single article
     const response = await fetch(`https://strapi.ajot.dev/dev-posts/${id}`);
     const article = await response.json();
+
     const data: IArticle = {
       id: article.id,
       title: article.title,
       created: new Date(article.date),
       category: article.category,
       cover: article.cover?.formats.large.url,
-      content: article.content.replace(/\(/g, '(https://strapi.ajot.dev'),
+      dynamicZone: article?.dynamicZone,
     } as IArticle;
 
     return data;
