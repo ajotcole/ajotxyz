@@ -1,37 +1,36 @@
 import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js';
-import { componentTypesEnum, IDynamicZone } from '../../models/IDynamicZone';
+import { IDynamicZone } from '../../models/IDynamicZone';
 import styles from './contentRenderer.module.scss';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Navigation } from 'swiper';
 
-export const ContentRenderer = (props: { dynamicZone: IDynamicZone[] }) => {
-  const [isEmpty, setIsEmpty] = useState<boolean>(true);
-  const [contentArray, setContentArray] = useState<IDynamicZone[]>([]);
-
-  if (props.dynamicZone) {
-    setIsEmpty(false);
-  }
+export const ContentRenderer = (props: { dynamicZone: IDynamicZone }) => {
+  const [data, setData] = useState<IDynamicZone>();
 
   useEffect(() => {
-    setContentArray(props.dynamicZone);
+    setData(props.dynamicZone);
   }, []);
 
-  console.log('i ran');
+  // install Swiper modules
+  SwiperCore.use([Navigation]);
 
   return (
     <>
-      {isEmpty && <div>Hier ist noch kein content.</div>}
-      {!isEmpty &&
-        contentArray.map((x) => {
-          switch (x.__component) {
-            case componentTypesEnum['text.single-text']:
-              <div>{x.singleText}</div>;
-              break;
-            case componentTypesEnum['text.rich-text']:
-              <ReactMarkdown className={styles.richText}>{x.richText || ''}</ReactMarkdown>;
-              break;
-          }
-        })}
+      {data?.__component === 'text.single-text' && <div>{data.singleText}</div>}
+      {data?.__component === 'text.rich-text' && <ReactMarkdown className={styles.richText}>{data.richText}</ReactMarkdown>}
+      {data?.__component === 'images.single-image' && (
+        <img className={styles.imageRender} src={`https://strapi.ajot.dev${data.imageSingle.url}`} alt={data.imageSingle.alternativeText} />
+      )}
+      {data && data?.__component === 'images.image-slider' && (
+        <Swiper className={styles.swiperCustomProps} centeredSlides navigation={true} height={200}>
+          {data.imageSlider.map((x, i) => (
+            <SwiperSlide key={i}>
+              <img src={`https://strapi.ajot.dev${x.url}`} alt={x.alternativeText} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
     </>
   );
 };

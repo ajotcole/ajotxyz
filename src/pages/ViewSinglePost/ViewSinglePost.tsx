@@ -1,11 +1,9 @@
 import { Spinner, SpinnerSize, Stack } from '@fluentui/react';
 import { useState, useEffect } from 'react';
 import { CgCalendarDates, CgUser } from 'react-icons/cg';
-import ReactMarkdown from 'react-markdown';
 import { useParams } from 'react-router-dom';
 import { ContentRenderer } from '../../components/contentRenderer/contentRenderer';
 import { IArticle } from '../../models/IArticle';
-import { IDynamicZone } from '../../models/IDynamicZone';
 import { ArticlesService } from '../../services/articlesService';
 import { formatDate } from '../../utility';
 import styles from './ViewSinglePost.module.scss';
@@ -15,17 +13,21 @@ export const ViewSinglePost = () => {
 
   const [isLoaded, setIsLoaded] = useState(false);
   const [item, setItem] = useState<IArticle>();
-  const [dynamicZoneData, setDynamicZoneData] = useState<IDynamicZone[]>([]);
 
   useEffect(() => {
     (async () => {
-      setItem(await ArticlesService.getSingleArticle(id));
-      setIsLoaded(true);
+      try {
+        const data = await ArticlesService.getSingleArticle(id);
+
+        setItem(data);
+        setIsLoaded(true);
+      } catch (e) {
+        console.log(e);
+      }
     })();
   }, []);
 
   document.title = `ajot.xyz - ${item?.title}`;
-  setDynamicZoneData(item?.dynamicZone || []);
 
   return (
     <div className={styles.articleContainer}>
@@ -52,7 +54,7 @@ export const ViewSinglePost = () => {
               backgroundImage: `${item.cover ? `url("https://strapi.ajot.dev${item.cover}")` : 'url("https://picsum.photos/1000")'}`,
             }}
           />
-          <ContentRenderer dynamicZone={dynamicZoneData} />
+          {item && item.dynamicZone.map((x, i) => <ContentRenderer dynamicZone={x} key={i} />)}
         </Stack>
       )}
     </div>

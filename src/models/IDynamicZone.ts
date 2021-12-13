@@ -1,5 +1,5 @@
 export interface IDynamicZone {
-  __component: componentTypesEnum;
+  __component: string;
   id: number;
   richText: string;
   singleText: string;
