@@ -2,6 +2,11 @@
   padding-top: 56px;
   min-height: calc(100vh - 120px);
 
+  .spinnerStyle {
+    margin-top: 200px;
+    width: 100%;
+  }
+
   .articleContent {
     display: block;
     margin: auto;
@@ -59,6 +64,10 @@
       width: 100%;
     }
 
+    .metadata {
+      width: 100%;
+    }
+
     .date {
       margin: 1em 0;
       font-family: 'Karla', sans-serif;
@@ -72,23 +81,16 @@
       }
     }
 
-    .richText {
-      margin: 15px 0;
+    .author {
+      margin: 1em 0;
+      font-family: 'Karla', sans-serif;
+      letter-spacing: 2px;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
 
-      p {
-        line-height: 30px;
-        font-family: 'Heebo', sans-serif;
-      }
-
-      h2 {
-        font-family: 'DM Serif Display', serif;
-        font-weight: normal;
-        font-size: 30px;
-        margin: 10px 0;
-      }
-
-      img {
-        width: 100%;
+      svg {
+        margin-right: 0.5em;
       }
     }
   }
