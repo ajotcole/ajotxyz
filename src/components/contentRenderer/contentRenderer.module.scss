@@ -20,22 +20,20 @@
 
 .imageRender {
   width: 100%;
+  height: 450px;
+  object-fit: cover;
 }
 
 .swiperCustomProps {
   max-height: 500px;
-
-  .swiper-button-prev {
-    color: pink;
-  }
-
-  .swiper-button-next {
-    color: pink;
-  }
 
   img {
     max-height: 500px;
     margin: auto;
     display: block;
   }
+}
+
+:root {
+  --swiper-theme-color: #000;
 }

@@ -47,13 +47,6 @@ export const ViewSinglePost = () => {
               AJ Cole
             </div>
           </Stack>
-
-          <div
-            className={styles.coverImage}
-            style={{
-              backgroundImage: `${item.cover ? `url("https://strapi.ajot.dev${item.cover}")` : 'url("https://picsum.photos/1000")'}`,
-            }}
-          />
           {item && item.dynamicZone.map((x, i) => <ContentRenderer dynamicZone={x} key={i} />)}
         </Stack>
       )}

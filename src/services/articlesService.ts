@@ -14,7 +14,7 @@ export class ArticlesService {
         title: r.title,
         created: new Date(r.date),
         category: r.category,
-        cover: r.cover?.formats.small.url,
+        cardCover: r.cardCover?.formats.small.url,
       } as IArticle),
     );
 
@@ -36,7 +36,7 @@ export class ArticlesService {
       title: article.title,
       created: new Date(article.date),
       category: article.category,
-      cover: article.cover?.formats.large.url,
+      cardCover: article.cardCover?.formats.large.url,
       dynamicZone: article?.dynamicZone,
     } as IArticle;
 

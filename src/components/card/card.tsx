@@ -13,7 +13,7 @@ export const ContentCard = (props: { content: IArticle }) => {
           className={styles.cardImage}
           style={{
             backgroundImage: `${
-              props.content.cover ? `url("https://strapi.ajot.dev${props.content.cover}")` : 'url("https://picsum.photos/1000")'
+              props.content.cardCover ? `url("https://strapi.ajot.dev${props.content.cardCover}")` : 'url("https://picsum.photos/1000")'
             }`,
           }}
         >
