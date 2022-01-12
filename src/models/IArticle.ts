@@ -5,6 +5,6 @@ export interface IArticle {
   title: string;
   created: Date;
   category: string;
-  cover: string;
   dynamicZone: IDynamicZone[];
+  cardCover: string;
 }
