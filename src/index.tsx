@@ -44,14 +44,16 @@ loadTheme({
 
 ReactDOM.render(
   <React.StrictMode>
-    <Naviagtion />
-    <Router>
-      <Switch>
-        <Route exact path="/" component={HomeView} />
-        <Route path="/articles/:id" component={ViewSinglePost} />
-      </Switch>
-    </Router>
-    <Footer />
+    <div style={{ backgroundColor: '#fff' }}>
+      <Naviagtion />
+      <Router>
+        <Switch>
+          <Route exact path="/" component={HomeView} />
+          <Route path="/articles/:id" component={ViewSinglePost} />
+        </Switch>
+      </Router>
+      <Footer />
+    </div>
   </React.StrictMode>,
   document.getElementById('root'),
 );
