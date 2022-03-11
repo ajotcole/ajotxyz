@@ -7,7 +7,15 @@
     max-width: 360px;
     max-height: 400px;
     margin-bottom: 1em;
+    border-radius: 15px;
+    transition: box-shadow 0.3s;
+
+    &:hover {
+      box-shadow: 0px 0px 18px 5px #d3d3d3;
+    }
+
     .cardImage {
+      border-radius: 15px 15px 0 0;
       background-image: url(https://picsum.photos/1000);
       background-position: center;
       background-size: cover;
@@ -17,6 +25,7 @@
     }
 
     .cardContent {
+      border-radius: 0 0 15px 15px;
       padding: 1.5em;
       background-color: #fdf0d5;
 
