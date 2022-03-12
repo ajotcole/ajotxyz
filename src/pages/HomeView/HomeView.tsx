@@ -17,7 +17,7 @@ export const HomeView = () => {
     })();
   }, []);
 
-  document.title = 'ajot.xyz - Home';
+  document.title = 'AJOT.XYZ - Home';
 
   return (
     <>
@@ -25,13 +25,13 @@ export const HomeView = () => {
       <Stack className={styles.homeView}>
         <div className={styles.heading}>All Articles</div>
         <div className={styles.seperator} />
-        <Stack horizontal horizontalAlign="start" wrap tokens={{ childrenGap: 20 }}>
+        <div className={styles.contentItemsContainer}>
           {isLoaded ? (
             items && items.map((i, index) => <ContentCard content={i} key={index} />)
           ) : (
             <Spinner className={styles.spinnerStyle} size={SpinnerSize.large} />
           )}
-        </Stack>
+        </div>
       </Stack>
     </>
   );
