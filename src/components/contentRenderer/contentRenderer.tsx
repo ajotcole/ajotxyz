@@ -20,7 +20,7 @@ export const ContentRenderer = (props: { dynamicZone: IDynamicZone }) => {
       {data?.__component === 'text.single-text' && <div>{data.singleText}</div>}
       {data?.__component === 'text.rich-text' && <ReactMarkdown className={styles.richText}>{data.richText}</ReactMarkdown>}
       {data?.__component === 'images.single-image' && (
-        <div>
+        <div className={styles.imageRenderContainer}>
           <img
             className={styles.imageRender}
             src={`https://strapi.ajot.dev${data.imageSingle.url}`}
