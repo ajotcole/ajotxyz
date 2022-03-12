@@ -2,7 +2,7 @@
   text-transform: uppercase;
   font-family: 'Karla', sans-serif;
   letter-spacing: 2px;
-  margin-bottom: 0.8em;
+  margin-bottom: 0.5em;
 }
 
 .seperator {
@@ -20,14 +20,25 @@
 .homeView {
   display: block;
   margin: auto;
+  margin-bottom: 20px;
 
   min-width: 360px;
   max-width: 360px;
+
+  .contentItemsContainer {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
 
   // Medium
   @media (min-width: 600px) {
     min-width: 600px;
     max-width: 600px;
+
+    .contentItemsContainer {
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
   // Medium Large
@@ -40,5 +51,9 @@
   @media (min-width: 1200px) {
     min-width: 1200px;
     max-width: 1200px;
+
+    .contentItemsContainer {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
   }
 }

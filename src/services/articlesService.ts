@@ -50,6 +50,8 @@ export class ArticlesService {
       title: content.title,
       description: content.description,
       image: content.image?.formats.large.url,
+      buttonUrl: content.buttonUrl,
+      buttonText: content.buttonText
     } as IHomeHero;
 
     return data;

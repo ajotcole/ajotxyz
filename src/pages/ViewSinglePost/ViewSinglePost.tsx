@@ -27,7 +27,7 @@ export const ViewSinglePost = () => {
     })();
   }, []);
 
-  document.title = `ajot.xyz - ${item?.title}`;
+  document.title = `AJOT.XYZ - ${item?.title}`;
 
   return (
     <div className={styles.articleContainer}>

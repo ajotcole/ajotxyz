@@ -31,9 +31,9 @@ export const HeroTemplate = () => {
                   <div className={styles.category}>Featured Article</div>
                   <div className={styles.heading}>{homeHero.title}</div>
                   <div className={styles.shortDescription}>{homeHero.description}</div>
-                  <Stack horizontal className={styles.linkFeaturedArticle}>
+                  <Stack horizontal className={styles.linkFeaturedArticle} onClick={() => window.open(homeHero.buttonUrl)}>
                     <CgMailForward size={28} />
-                    <span>TO ARTICLE</span>
+                    <span>{homeHero.buttonText}</span>
                   </Stack>
                 </div>
               </Stack.Item>
