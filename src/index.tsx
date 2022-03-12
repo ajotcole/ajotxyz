@@ -10,8 +10,8 @@ import { initializeIcons, loadTheme } from '@fluentui/react';
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
 
-export const versionNumber = '1.0.1.1';
-export const changedDate = '13.12.2021';
+export const versionNumber = '1.1.0.1';
+export const changedDate = '12.03.2022';
 
 initializeIcons();
 
