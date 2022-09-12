@@ -19,10 +19,10 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
-- task: CopyFilesOverSSH@0
+- task: AzureFileCopy@4
   inputs:
-    sshEndpoint: 'Hetzner Server'
-    sourceFolder: '$(System.DefaultWorkingDirectory)/build'
-    contents: '**'
-    targetFolder: '../../var/lib/docker/volumes/ajotxyz/_data'
-    readyTimeout: '20000'
+    SourcePath: '$(System.DefaultWorkingDirectory)/build'
+    azureSubscription: 'Pay-As-You-Go(87e9682f-8336-4099-82a0-eca6d0ce38dc)'
+    Destination: 'AzureBlob'
+    storage: 'ajotcole'
+    ContainerName: 'ajotxyz'
