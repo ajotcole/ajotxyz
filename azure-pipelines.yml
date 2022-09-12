@@ -21,7 +21,7 @@ steps:
   displayName: 'npm install and build'
 - task: AzureFileCopy@4
   inputs:
-    SourcePath: '$(System.DefaultWorkingDirectory)\build'
+    SourcePath: '$(Build.Repository.LocalPath)/build'
     azureSubscription: 'Pay-As-You-Go(87e9682f-8336-4099-82a0-eca6d0ce38dc)'
     Destination: 'AzureBlob'
     storage: 'ajotcole'
