@@ -19,10 +19,20 @@ steps:
     npm install
     npm run build
   displayName: 'npm install and build'
-- task: AzureFileCopy@4
+#- task: AzureFileCopy@4
+#  inputs:
+#    SourcePath: '$(Build.Repository.LocalPath)/build/*'
+#    azureSubscription: 'Pay-As-You-Go(87e9682f-8336-4099-82a0-eca6d0ce38dc)'
+#    Destination: 'AzureBlob'
+#    storage: 'ajotcole'
+#    ContainerName: 'ajotxyz'
+- task: AzureCLI@1
+  displayName: Az File Copy to Storage
   inputs:
-    SourcePath: '$(Build.Repository.LocalPath)/build/*'
     azureSubscription: 'Pay-As-You-Go(87e9682f-8336-4099-82a0-eca6d0ce38dc)'
-    Destination: 'AzureBlob'
-    storage: 'ajotcole'
-    ContainerName: 'ajotxyz'
+    scriptLocation: inlineScript
+    inlineScript: |
+      az storage blob upload-batch \
+        --destination \ajotxyz \
+        --account-name "ajotcole" \
+        --source "$(Agent.BuildDirectory)/$(outputDir)/build/*"
