@@ -35,4 +35,4 @@ steps:
       az storage blob upload-batch \
         --destination \ajotxyz \
         --account-name "ajotcole" \
-        --source "$(Agent.BuildDirectory)/$(outputDir)/build/*"
+        --source "$(System.DefaultWorkingDirectory)/build"
