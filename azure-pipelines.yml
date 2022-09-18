@@ -33,7 +33,7 @@ steps:
     scriptLocation: inlineScript
     inlineScript: |
       az storage blob upload-batch \
-        --destination \ajotxyz \
+        --destination \$web \
         --account-name "ajotcole" \
         --source "$(System.DefaultWorkingDirectory)/build" \
         --overwrite true
