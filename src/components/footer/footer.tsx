@@ -22,7 +22,7 @@ export const Footer = () => {
         <p>
           Alexander James Cole
           <br />
-          Alsterdorfer Str. 184
+          Ohlsdorfer Str. 72
           <br />
           22297 Hamburg
         </p>
