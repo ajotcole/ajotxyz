@@ -15,26 +15,28 @@ export const ContentRenderer = (props: { dynamicZone: IDynamicZone }) => {
   // install Swiper modules
   SwiperCore.use([Navigation]);
 
+  console.log(data);
+
   return (
     <>
       {data?.__component === 'text.single-text' && <div>{data.singleText}</div>}
       {data?.__component === 'text.rich-text' && <ReactMarkdown className={styles.richText}>{data.richText}</ReactMarkdown>}
-      {data?.__component === 'images.single-image' && (
-        <div>
+      {data?.__component === 'images.image-single' && (
+        <div className={styles.imageRenderContainer}>
           <img
             className={styles.imageRender}
-            src={`https://strapi.ajot.dev${data.imageSingle.url}`}
-            alt={data.imageSingle.alternativeText}
+            src={`https://strapi.ajot.dev${data.imageSingle.data.attributes.url}`}
+            alt={data.imageSingle.data.attributes.alternativeText}
           />
-          {data.imageSingle.caption && <div>{data.imageSingle.caption}</div>}
+          {data.description && <div>{data.description}</div>}
         </div>
       )}
       {data && data?.__component === 'images.image-slider' && (
         <Swiper className={styles.swiperCustomProps} centeredSlides navigation={true} height={200}>
-          {data.imageSlider.map((x, i) => (
+          {data.imageSlider.data.map((x, i) => (
             <SwiperSlide key={i}>
-              <img src={`https://strapi.ajot.dev${x.url}`} alt={x.alternativeText} />
-              {x.caption && <div>{x.caption}</div>}
+              <img src={`https://strapi.ajot.dev${x.attributes.url}`} alt={x.attributes.alternativeText} />
+              {x.attributes.caption && <div>{x.attributes.caption}</div>}
             </SwiperSlide>
           ))}
         </Swiper>

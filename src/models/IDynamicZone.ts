@@ -3,8 +3,12 @@ export interface IDynamicZone {
   id: number;
   richText: string;
   singleText: string;
-  imageSlider: image[];
-  imageSingle: image;
+  imageSlider: {
+    data: image[];
+  };
+  imageSingle: {
+    data: image;
+  };
   description: string;
 }
 
@@ -16,21 +20,23 @@ export enum componentTypesEnum {
 }
 
 interface image {
-  url: string;
-  caption: string;
-  alternativeText: string;
-  formats: {
-    thumbnail: {
-      url: string;
-    };
-    large: {
-      url: string;
-    };
-    medium: {
-      url: string;
-    };
-    small: {
-      url: string;
+  attributes: {
+    url: string;
+    caption: string;
+    alternativeText: string;
+    formats: {
+      thumbnail: {
+        url: string;
+      };
+      large: {
+        url: string;
+      };
+      medium: {
+        url: string;
+      };
+      small: {
+        url: string;
+      };
     };
   };
 }

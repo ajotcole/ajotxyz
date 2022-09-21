@@ -18,10 +18,24 @@
   }
 }
 
-.imageRender {
-  width: 100%;
-  height: 450px;
-  object-fit: cover;
+.imageRenderContainer {
+  border-radius: 15px;
+  border: 0.5px solid #d3d3d3;
+
+  .imageRender {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 15px;
+
+    img {
+      display: block;
+    }
+  }
+
+  div {
+    margin: 5px 20px;
+  }
 }
 
 .swiperCustomProps {
