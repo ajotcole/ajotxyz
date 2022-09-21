@@ -12,28 +12,17 @@ pool:
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '14.x'
+    versionSpec: '16.x'
   displayName: 'Install Node.js'
 
 - script: |
     npm install
     npm run build
   displayName: 'npm install and build'
-#- task: AzureFileCopy@4
-#  inputs:
-#    SourcePath: '$(Build.Repository.LocalPath)/build/*'
-#    azureSubscription: 'Pay-As-You-Go(87e9682f-8336-4099-82a0-eca6d0ce38dc)'
-#    Destination: 'AzureBlob'
-#    storage: 'ajotcole'
-#    ContainerName: 'ajotxyz'
-- task: AzureCLI@1
-  displayName: Az File Copy to Storage
+- task: CopyFilesOverSSH@0
   inputs:
-    azureSubscription: 'Pay-As-You-Go(87e9682f-8336-4099-82a0-eca6d0ce38dc)'
-    scriptLocation: inlineScript
-    inlineScript: |
-      az storage blob upload-batch \
-        --destination \$web \
-        --account-name "ajotcole" \
-        --source "$(System.DefaultWorkingDirectory)/build" \
-        --overwrite true
+    sshEndpoint: 'Hetzner Server'
+    sourceFolder: '$(System.DefaultWorkingDirectory)/build'
+    contents: '**'
+    targetFolder: '../../var/lib/docker/volumes/ajotxyz/_data'
+    readyTimeout: '20000'
