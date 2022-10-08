@@ -15,8 +15,6 @@ export const ContentRenderer = (props: { dynamicZone: IDynamicZone }) => {
   // install Swiper modules
   SwiperCore.use([Navigation]);
 
-  console.log(data);
-
   return (
     <>
       {data?.__component === 'text.single-text' && <div>{data.singleText}</div>}
