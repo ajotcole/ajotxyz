@@ -1,9 +1,11 @@
 import { Spinner, SpinnerSize, Stack } from '@fluentui/react';
-import { useState, useEffect } from 'react';
+import { DiscussionEmbed } from 'disqus-react';
+import { useEffect, useState } from 'react';
 import { CgCalendarDates, CgUser } from 'react-icons/cg';
 import { useParams } from 'react-router-dom';
 import { ContentRenderer } from '../../components/contentRenderer/contentRenderer';
 import { IArticle } from '../../models/IArticle';
+import { IDynamicZone } from '../../models/IDynamicZone';
 import { ArticlesService } from '../../services/articlesService';
 import { formatDate } from '../../utility';
 import styles from './ViewSinglePost.module.scss';
@@ -22,7 +24,7 @@ export const ViewSinglePost = () => {
         setItem(data);
         setIsLoaded(true);
       } catch (e) {
-        console.log(e);
+        console.error(e);
       }
     })();
   }, []);
@@ -47,7 +49,16 @@ export const ViewSinglePost = () => {
               AJ Cole
             </div>
           </Stack>
-          {item && item.dynamicZone.map((x, i) => <ContentRenderer dynamicZone={x} key={i} />)}
+          {item && item.dynamicZone.map((x: IDynamicZone, i: number) => <ContentRenderer dynamicZone={x} key={i} />)}
+          <DiscussionEmbed
+            shortname="ajotxyz"
+            config={{
+              url: window.location.href,
+              identifier: id,
+              title: item.title,
+              language: 'en_US',
+            }}
+          />
         </Stack>
       )}
     </div>
