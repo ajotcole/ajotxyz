@@ -9,6 +9,7 @@ import { Footer } from './components/footer/footer';
 import { initializeIcons, loadTheme } from '@fluentui/react';
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
+import { ChakraProvider } from '@chakra-ui/react';
 
 export const versionNumber = '1.1.0.1';
 export const changedDate = '12.03.2022';
@@ -44,16 +45,18 @@ loadTheme({
 
 ReactDOM.render(
   <React.StrictMode>
-    <div style={{ backgroundColor: '#fff' }}>
-      <Naviagtion />
-      <Router>
-        <Switch>
-          <Route exact path="/" component={HomeView} />
-          <Route path="/articles/:id" component={ViewSinglePost} />
-        </Switch>
-      </Router>
-      <Footer />
-    </div>
+    <ChakraProvider>
+      <div style={{ backgroundColor: '#fff' }}>
+        <Naviagtion />
+        <Router>
+          <Switch>
+            <Route exact path="/" component={HomeView} />
+            <Route path="/articles/:id" component={ViewSinglePost} />
+          </Switch>
+        </Router>
+        <Footer />
+      </div>
+    </ChakraProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 );
