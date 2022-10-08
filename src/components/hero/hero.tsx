@@ -2,10 +2,10 @@ import { FontIcon, Stack } from '@fluentui/react';
 import { useState, useEffect } from 'react';
 import { IHomeHero } from '../../models/IHomeHero';
 import { ArticlesService } from '../../services/articlesService';
-import styles from './heroTemplate.module.scss';
+import styles from './hero.module.scss';
 import { CgMailForward } from 'react-icons/cg';
 
-export const HeroTemplate = () => {
+export const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [homeHero, setHomeHero] = useState<IHomeHero>();
 
@@ -21,12 +21,18 @@ export const HeroTemplate = () => {
       {isLoaded ? (
         homeHero && (
           <>
-            <Stack horizontal tokens={{ childrenGap: 40 }} style={{ marginTop: '76px' }} horizontalAlign="center">
+            <Stack
+              horizontal
+              tokens={{ childrenGap: 40 }}
+              style={{ marginTop: '-10px', paddingTop: '90px', background: `url('https://strapi.ajot.dev${homeHero.image}')` }}
+              horizontalAlign="center"
+            >
               <Stack.Item>
-                <div className={styles.searchBox}>
+                {/* <div className={styles.searchBox}>
                   <FontIcon style={{ margin: '0 10px' }} iconName="Search" />
                   <span>Search coming soon...</span>
-                </div>
+                </div> */}
+                <div style={{ background: `url('https://strapi.ajot.dev${homeHero.image}')` }}></div>
                 <div className={styles.contentContainer}>
                   <div className={styles.category}>Featured Article</div>
                   <div className={styles.heading}>{homeHero.title}</div>

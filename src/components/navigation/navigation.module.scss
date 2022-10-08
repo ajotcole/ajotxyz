@@ -1,9 +1,9 @@
 .navigationContainer {
-  border-bottom: 0.5px solid #d3d3d3;
+  border-bottom: 1px solid #9c9c9c;
   z-index: 99;
   position: fixed;
   width: 100%;
-  background-color: #fff;
+  backdrop-filter: blur(20px) saturate(0%);
   padding: 0 20px;
 
   .centerItem {

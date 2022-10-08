@@ -2,7 +2,7 @@ import { Spinner, SpinnerSize, Stack } from '@fluentui/react';
 import { useEffect, useState } from 'react';
 import { IArticle } from '../../models/IArticle';
 import { ArticlesService } from '../../services/articlesService';
-import { HeroTemplate } from '../../components/hero/heroTemplate';
+import { Hero } from '../../components/hero/hero';
 import { ContentCard } from '../../components/card/card';
 import styles from './HomeView.module.scss';
 
@@ -21,7 +21,7 @@ export const HomeView = () => {
 
   return (
     <>
-      <HeroTemplate />
+      <Hero />
       <Stack className={styles.homeView}>
         <div className={styles.heading}>All Articles</div>
         <div className={styles.seperator} />
