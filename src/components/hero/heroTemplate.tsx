@@ -23,10 +23,6 @@ export const HeroTemplate = () => {
           <>
             <Stack horizontal tokens={{ childrenGap: 40 }} style={{ marginTop: '76px' }} horizontalAlign="center">
               <Stack.Item>
-                <div className={styles.searchBox}>
-                  <FontIcon style={{ margin: '0 10px' }} iconName="Search" />
-                  <span>Search coming soon...</span>
-                </div>
                 <div className={styles.contentContainer}>
                   <div className={styles.category}>Featured Article</div>
                   <div className={styles.heading}>{homeHero.title}</div>

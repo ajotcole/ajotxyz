@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import './index.scss';
 import { HomeView } from './pages/HomeView/HomeView';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -10,6 +9,7 @@ import { initializeIcons, loadTheme } from '@fluentui/react';
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
 import { ChakraProvider } from '@chakra-ui/react';
+import ReactDOM from 'react-dom/client';
 
 export const versionNumber = '1.1.0.1';
 export const changedDate = '12.03.2022';
@@ -43,7 +43,9 @@ loadTheme({
   },
 });
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+
+root.render(
   <React.StrictMode>
     <ChakraProvider>
       <div style={{ backgroundColor: '#fff' }}>
@@ -58,5 +60,4 @@ ReactDOM.render(
       </div>
     </ChakraProvider>
   </React.StrictMode>,
-  document.getElementById('root'),
 );

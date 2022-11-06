@@ -27,7 +27,7 @@ export const HomeView = () => {
       <Stack className={styles.homeView}>
         <div className={styles.heading}>All Articles</div>
         <div className={styles.seperator} />
-        <ButtonGroup marginBottom="10px">
+        <ButtonGroup marginBottom="15px">
           <ChakraButton variant="outline">Button1</ChakraButton>
           <ChakraButton variant="ghost">Button2</ChakraButton>
         </ButtonGroup>
