@@ -1,5 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import './index.scss';
 import { HomeView } from './pages/HomeView/HomeView';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -9,6 +8,7 @@ import { Footer } from './components/footer/footer';
 import { initializeIcons, loadTheme } from '@fluentui/react';
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
+import React from 'react';
 
 export const versionNumber = '1.1.0.1';
 export const changedDate = '12.03.2022';
@@ -42,7 +42,10 @@ loadTheme({
   },
 });
 
-ReactDOM.render(
+const container = document.getElementById('root');
+const root = createRoot(container!);
+
+root.render(
   <React.StrictMode>
     <div style={{ backgroundColor: '#fff' }}>
       <Naviagtion />
@@ -55,5 +58,4 @@ ReactDOM.render(
       <Footer />
     </div>
   </React.StrictMode>,
-  document.getElementById('root'),
 );
