@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { IHomeHero } from '../../models/IHomeHero';
-import { ArticlesService } from '../../services/articlesService';
+import { ArticlesService } from '../../api/articlesService';
 import styles from './heroTemplate.module.scss';
 import { CgMailForward } from 'react-icons/cg';
 import { Box, HStack, Stack } from '@chakra-ui/react';

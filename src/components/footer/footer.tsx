@@ -1,4 +1,19 @@
-import { Box, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Stack, useDisclosure } from '@chakra-ui/react';
+import {
+  Box,
+  Center,
+  Flex,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  Spacer,
+  Stack,
+  Text,
+  useColorModeValue,
+  useDisclosure,
+} from '@chakra-ui/react';
 import dsgvoText from '../../assets/dsgvo';
 
 import styles from './footer.module.scss';
@@ -8,24 +23,52 @@ export const Footer = () => {
   // TODO let dsgvo text come from strapi
 
   return (
-    <footer className={styles.footerContainer}>
-      <Stack className={styles.contentContainer}>
-        <Box className={styles.contentSection}>
-          <div className={styles.imprint} onClick={onOpen}>
-            Impressum
-          </div>
-        </Box>
-        <Box className={styles.copyrightName}>© 2021 ajot.xyz</Box>
-      </Stack>
+    <footer
+      className={styles.footerContainer}
+      style={{
+        backgroundColor: useColorModeValue('#46494c', '#242d36'),
+        width: '100%',
+      }}
+    >
+      <Flex>
+        <Spacer />
+        <Center>
+          <Text
+            onClick={onOpen}
+            style={{
+              color: '#fff',
+              textTransform: 'uppercase',
+              fontFamily: 'Karla',
+              letterSpacing: '2px',
+              fontSize: '12px',
+            }}
+          >
+            Impressum / Imprint
+          </Text>
+          <Text
+            style={{
+              color: '#fff',
+              margin: '15px 10px',
+              textTransform: 'uppercase',
+              fontFamily: 'Karla',
+              letterSpacing: '2px',
+              fontSize: '12px',
+            }}
+          >
+            © 2021 ajot.xyz
+          </Text>
+        </Center>
+        <Spacer />
+      </Flex>
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Impressum</ModalHeader>
           <ModalCloseButton />
-          <ModalBody></ModalBody>
-
-          <div dangerouslySetInnerHTML={{ __html: dsgvoText }} />
+          <ModalBody>
+            <div dangerouslySetInnerHTML={{ __html: dsgvoText }} />
+          </ModalBody>
         </ModalContent>
       </Modal>
     </footer>

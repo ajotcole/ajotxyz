@@ -1,13 +1,15 @@
 import { createRoot } from 'react-dom/client';
 import './index.scss';
-import { HomeView } from './pages/HomeView/HomeView';
+import { HomeView } from './views/HomeView/HomeView';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { ViewSinglePost } from './pages/ViewSinglePost/ViewSinglePost';
-import { Naviagtion } from './components/navigation/navigation';
+import { ViewSinglePost } from './views/ViewSinglePost/ViewSinglePost';
 import { Footer } from './components/footer/footer';
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
 import React from 'react';
+import { Navbar } from './components/navbar/navbar';
+import { ChakraProvider } from '@chakra-ui/react';
+import { Home } from './views/home/home';
 
 // TODO make below dynamic
 export const versionNumber = '1.1.0.1';
@@ -18,15 +20,21 @@ const root = createRoot(container!);
 
 root.render(
   <React.StrictMode>
-    <div style={{ backgroundColor: '#fff' }}>
-      <Naviagtion />
+    <ChakraProvider>
+      <Navbar />
+      <div
+        style={{
+          display: 'block',
+          height: '50.5px',
+        }}
+      />
       <Router>
         <Switch>
-          <Route exact path="/" component={HomeView} />
+          <Route exact path="/" component={Home} />
           <Route path="/articles/:id" component={ViewSinglePost} />
         </Switch>
       </Router>
       <Footer />
-    </div>
+    </ChakraProvider>
   </React.StrictMode>,
 );

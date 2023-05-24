@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { IArticle } from '../../models/IArticle';
-import { ArticlesService } from '../../services/articlesService';
+import { ArticlesService } from '../../api/articlesService';
 import { HeroTemplate } from '../../components/hero/heroTemplate';
 import { ContentCard } from '../../components/card/card';
 import styles from './HomeView.module.scss';
