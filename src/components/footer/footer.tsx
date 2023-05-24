@@ -1,26 +1,33 @@
-import { Panel, PanelType, Stack } from '@fluentui/react';
-import { useBoolean } from '@fluentui/react-hooks';
+import { Box, Modal, ModalBody, ModalCloseButton, ModalContent, ModalHeader, ModalOverlay, Stack, useDisclosure } from '@chakra-ui/react';
 import dsgvoText from '../../assets/dsgvo';
 
 import styles from './footer.module.scss';
 export const Footer = () => {
-  const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] = useBoolean(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  // TODO let dsgvo text come from strapi
 
   return (
     <footer className={styles.footerContainer}>
       <Stack className={styles.contentContainer}>
-        <Stack.Item className={styles.contentSection} align="center">
-          <div className={styles.imprint} onClick={() => openPanel()}>
+        <Box className={styles.contentSection}>
+          <div className={styles.imprint} onClick={onOpen}>
             Impressum
           </div>
-        </Stack.Item>
-        <Stack.Item className={styles.copyrightName} align="center">
-          © 2021 ajot.xyz
-        </Stack.Item>
+        </Box>
+        <Box className={styles.copyrightName}>© 2021 ajot.xyz</Box>
       </Stack>
-      <Panel isLightDismiss isOpen={isOpen} onDismiss={dismissPanel} type={PanelType.medium} headerText="Impressum">
-        <div dangerouslySetInnerHTML={{ __html: dsgvoText }} />
-      </Panel>
+
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Impressum</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody></ModalBody>
+
+          <div dangerouslySetInnerHTML={{ __html: dsgvoText }} />
+        </ModalContent>
+      </Modal>
     </footer>
   );
 };

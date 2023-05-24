@@ -1,4 +1,3 @@
-import { Spinner, SpinnerSize, Stack } from '@fluentui/react';
 import { DiscussionEmbed } from 'disqus-react';
 import { useEffect, useState } from 'react';
 import { CgCalendarDates, CgUser } from 'react-icons/cg';
@@ -9,6 +8,7 @@ import { IDynamicZone } from '../../models/IDynamicZone';
 import { ArticlesService } from '../../services/articlesService';
 import { formatDate } from '../../utility';
 import styles from './ViewSinglePost.module.scss';
+import { HStack, Spinner, Stack } from '@chakra-ui/react';
 
 export const ViewSinglePost = () => {
   const { id }: any = useParams();
@@ -33,13 +33,13 @@ export const ViewSinglePost = () => {
 
   return (
     <div className={styles.articleContainer}>
-      {!isLoaded && <Spinner className={styles.spinnerStyle} size={SpinnerSize.large} />}
+      {!isLoaded && <Spinner className={styles.spinnerStyle} />}
       {isLoaded && item && (
         <Stack className={styles.articleContent}>
           <div className={styles.category}>{item.category}</div>
           <h1>{item.title}</h1>
           <div className={styles.seperator} />
-          <Stack horizontal className={styles.metadata} horizontalAlign="space-between" tokens={{ childrenGap: 3000 }}>
+          <HStack className={styles.metadata}>
             <div className={styles.date}>
               <CgCalendarDates />
               {formatDate(item.created)}
@@ -48,7 +48,7 @@ export const ViewSinglePost = () => {
               <CgUser />
               AJ Cole
             </div>
-          </Stack>
+          </HStack>
           {item && item.dynamicZone.map((x: IDynamicZone, i: number) => <ContentRenderer dynamicZone={x} key={i} />)}
           <DiscussionEmbed
             shortname="ajotxyz"
