@@ -23,7 +23,7 @@ jobs:
         uses: actions/upload-artifact@master
         with:
           name: ajotxyz-artifact
-          path: build
+          path: dist
 
   deploy:
     runs-on: ubuntu-latest
@@ -35,7 +35,7 @@ jobs:
         uses: actions/download-artifact@master
         with:
           name: ajotxyz-artifact
-          path: build
+          path: dist
       - name: Setup Tailscale
         id: tailscale
         uses: tailscale/github-action@main
