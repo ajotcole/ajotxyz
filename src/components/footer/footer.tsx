@@ -41,6 +41,7 @@ export const Footer = () => {
               fontFamily: 'Karla',
               letterSpacing: '2px',
               fontSize: '12px',
+              cursor: 'pointer',
             }}
           >
             Impressum / Imprint
