@@ -1,20 +1,29 @@
 import { Card, CardBody, SimpleGrid, Image, Text, useColorModeValue } from '@chakra-ui/react';
 import { CgCalendarDates } from 'react-icons/cg';
 import { formatDate } from '../../utility';
+import { IArticle } from '../../models/IArticle';
 
-export const ArticleGrid: React.FC<{ articles: string[] }> = ({ articles }) => {
+export const ArticleGrid: React.FC<{ articles: IArticle[] }> = ({ articles }) => {
+  console.log(articles);
   return (
     <SimpleGrid columns={3} spacingX="20px" spacingY="20px">
       {articles.map((article) => (
         <Card
+          onClick={() => window.open(`/articles/${article.id}`, '_self')}
           cursor="pointer"
           width="300px"
           overflow="hidden"
           borderRadius="15px"
           boxShadow="sm"
           backgroundColor={useColorModeValue('#FDEFD5', '#4d4941')}
+          key={article.id}
         >
-          <Image objectFit="cover" maxH={'100px'} maxW={'100%'} src="https://picsum.photos/1000" />
+          <Image
+            objectFit="cover"
+            maxH={'100px'}
+            maxW={'100%'}
+            src={article.cardCover ? `https://strapi.ajot.dev${article.cardCover}` : 'https://picsum.photos/1000'}
+          />
           <CardBody>
             <Text
               style={{
@@ -24,7 +33,7 @@ export const ArticleGrid: React.FC<{ articles: string[] }> = ({ articles }) => {
                 fontSize: '14px',
               }}
             >
-              Featured Article
+              {article.category}
             </Text>
             <Text
               style={{
@@ -33,7 +42,7 @@ export const ArticleGrid: React.FC<{ articles: string[] }> = ({ articles }) => {
                 lineHeight: '30px',
               }}
             >
-              Heading of featured article
+              {article.title}
             </Text>
             <div
               style={{
@@ -58,7 +67,7 @@ export const ArticleGrid: React.FC<{ articles: string[] }> = ({ articles }) => {
                   marginRight: '0.5em',
                 }}
               />
-              {formatDate(new Date())}
+              {formatDate(article.created)}
             </Text>
           </CardBody>
         </Card>

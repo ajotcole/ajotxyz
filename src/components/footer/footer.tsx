@@ -55,7 +55,7 @@ export const Footer = () => {
               fontSize: '12px',
             }}
           >
-            © 2021 ajot.xyz
+            © 2023 ajot.xyz
           </Text>
         </Center>
         <Spacer />
