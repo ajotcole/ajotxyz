@@ -1,4 +1,3 @@
-import { Spinner, SpinnerSize, Stack } from '@fluentui/react';
 import { DiscussionEmbed } from 'disqus-react';
 import { useEffect, useState } from 'react';
 import { CgCalendarDates, CgUser } from 'react-icons/cg';
@@ -6,9 +5,10 @@ import { useParams } from 'react-router-dom';
 import { ContentRenderer } from '../../components/contentRenderer/contentRenderer';
 import { IArticle } from '../../models/IArticle';
 import { IDynamicZone } from '../../models/IDynamicZone';
-import { ArticlesService } from '../../services/articlesService';
+import { ArticlesService } from '../../api/articlesService';
 import { formatDate } from '../../utility';
 import styles from './ViewSinglePost.module.scss';
+import { Center, Flex, HStack, Spacer, Spinner, Stack, useColorModeValue } from '@chakra-ui/react';
 
 export const ViewSinglePost = () => {
   const { id }: any = useParams();
@@ -33,23 +33,42 @@ export const ViewSinglePost = () => {
 
   return (
     <div className={styles.articleContainer}>
-      {!isLoaded && <Spinner className={styles.spinnerStyle} size={SpinnerSize.large} />}
+      {!isLoaded && (
+        <Flex>
+          <Spacer />
+          <Center>
+            <Spinner />
+          </Center>
+          <Spacer />
+        </Flex>
+      )}
       {isLoaded && item && (
         <Stack className={styles.articleContent}>
           <div className={styles.category}>{item.category}</div>
           <h1>{item.title}</h1>
-          <div className={styles.seperator} />
-          <Stack horizontal className={styles.metadata} horizontalAlign="space-between" tokens={{ childrenGap: 3000 }}>
-            <div className={styles.date}>
+          <div
+            style={{
+              backgroundColor: useColorModeValue('#000', '#fff'),
+              display: 'block',
+              height: '1px',
+              width: '100%',
+            }}
+          />
+          <Flex className={styles.metadata}>
+            <Center className={styles.date}>
               <CgCalendarDates />
               {formatDate(item.created)}
-            </div>
-            <div className={styles.author}>
+            </Center>
+            <Spacer />
+            <Center className={styles.author}>
               <CgUser />
               AJ Cole
-            </div>
-          </Stack>
+            </Center>
+          </Flex>
           {item && item.dynamicZone.map((x: IDynamicZone, i: number) => <ContentRenderer dynamicZone={x} key={i} />)}
+          {/* 
+          TODO fix theming and else sometime
+          
           <DiscussionEmbed
             shortname="ajotxyz"
             config={{
@@ -57,8 +76,9 @@ export const ViewSinglePost = () => {
               identifier: id,
               title: item.title,
               language: 'en_US',
+              
             }}
-          />
+          /> */}
         </Stack>
       )}
     </div>

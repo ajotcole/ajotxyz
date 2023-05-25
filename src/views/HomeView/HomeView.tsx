@@ -1,10 +1,10 @@
-import { Spinner, SpinnerSize, Stack } from '@fluentui/react';
 import { useEffect, useState } from 'react';
 import { IArticle } from '../../models/IArticle';
-import { ArticlesService } from '../../services/articlesService';
+import { ArticlesService } from '../../api/articlesService';
 import { HeroTemplate } from '../../components/hero/heroTemplate';
 import { ContentCard } from '../../components/card/card';
 import styles from './HomeView.module.scss';
+import { Spinner, Stack } from '@chakra-ui/react';
 
 export const HomeView = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -29,7 +29,7 @@ export const HomeView = () => {
           {isLoaded ? (
             items && items.map((i, index) => <ContentCard content={i} key={index} />)
           ) : (
-            <Spinner className={styles.spinnerStyle} size={SpinnerSize.large} />
+            <Spinner className={styles.spinnerStyle} />
           )}
         </div>
       </Stack>

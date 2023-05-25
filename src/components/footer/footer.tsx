@@ -1,26 +1,77 @@
-import { Panel, PanelType, Stack } from '@fluentui/react';
-import { useBoolean } from '@fluentui/react-hooks';
+import {
+  Box,
+  Center,
+  Flex,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  Spacer,
+  Stack,
+  Text,
+  useColorModeValue,
+  useDisclosure,
+} from '@chakra-ui/react';
 import dsgvoText from '../../assets/dsgvo';
 
 import styles from './footer.module.scss';
 export const Footer = () => {
-  const [isOpen, { setTrue: openPanel, setFalse: dismissPanel }] = useBoolean(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  // TODO let dsgvo text come from strapi
 
   return (
-    <footer className={styles.footerContainer}>
-      <Stack className={styles.contentContainer}>
-        <Stack.Item className={styles.contentSection} align="center">
-          <div className={styles.imprint} onClick={() => openPanel()}>
-            Impressum
-          </div>
-        </Stack.Item>
-        <Stack.Item className={styles.copyrightName} align="center">
-          © 2021 ajot.xyz
-        </Stack.Item>
-      </Stack>
-      <Panel isLightDismiss isOpen={isOpen} onDismiss={dismissPanel} type={PanelType.medium} headerText="Impressum">
-        <div dangerouslySetInnerHTML={{ __html: dsgvoText }} />
-      </Panel>
+    <footer
+      className={styles.footerContainer}
+      style={{
+        backgroundColor: useColorModeValue('#46494c', '#242d36'),
+        width: '100%',
+      }}
+    >
+      <Flex>
+        <Spacer />
+        <Center>
+          <Text
+            onClick={onOpen}
+            style={{
+              color: '#fff',
+              textTransform: 'uppercase',
+              fontFamily: 'Karla',
+              letterSpacing: '2px',
+              fontSize: '12px',
+              cursor: 'pointer',
+            }}
+          >
+            Impressum / Imprint
+          </Text>
+          <Text
+            style={{
+              color: '#fff',
+              margin: '15px 10px',
+              textTransform: 'uppercase',
+              fontFamily: 'Karla',
+              letterSpacing: '2px',
+              fontSize: '12px',
+            }}
+          >
+            © 2023 ajot.xyz
+          </Text>
+        </Center>
+        <Spacer />
+      </Flex>
+
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Impressum</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <div dangerouslySetInnerHTML={{ __html: dsgvoText }} />
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </footer>
   );
 };
