@@ -6,15 +6,15 @@ import { IArticle } from '../../models/IArticle';
 export const ArticleGrid: React.FC<{ articles: IArticle[] }> = ({ articles }) => {
   console.log(articles);
   return (
-    <SimpleGrid columns={3} spacingX="20px" spacingY="20px">
+    <SimpleGrid columns={3} minChildWidth="160px" spacingX="20px" spacingY="20px">
       {articles.map((article) => (
         <Card
           onClick={() => window.open(`/articles/${article.id}`, '_self')}
           cursor="pointer"
-          width="300px"
           overflow="hidden"
           borderRadius="15px"
           boxShadow="sm"
+          minW="180px"
           backgroundColor={useColorModeValue('#FDEFD5', '#4d4941')}
           key={article.id}
         >
