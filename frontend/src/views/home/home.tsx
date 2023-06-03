@@ -99,6 +99,7 @@ export const Home = () => {
               <Image
                 objectFit="cover"
                 maxW={{ base: '100%', sm: '200px' }}
+                maxH={{ base: '200px', sm: '100%' }}
                 src={homeHero?.image ? `https://strapi.ajot.dev${homeHero?.image}` : 'https://picsum.photos/1000'}
               />
             </Card>

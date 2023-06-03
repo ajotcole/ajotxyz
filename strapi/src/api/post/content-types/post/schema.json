@@ -1,0 +1,53 @@
+{
+  "kind": "collectionType",
+  "collectionName": "posts",
+  "info": {
+    "singularName": "post",
+    "pluralName": "posts",
+    "displayName": "Post"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "date": {
+      "type": "datetime"
+    },
+    "category": {
+      "type": "string"
+    },
+    "cardCover": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "postCategory": {
+      "type": "enumeration",
+      "enum": [
+        "Misc",
+        "Photography",
+        "Travel",
+        "Smart Home",
+        "Programming",
+        "Engineering"
+      ]
+    },
+    "dynamicZone": {
+      "type": "dynamiczone",
+      "components": [
+        "images.image-single",
+        "images.image-slider",
+        "text.rich-text"
+      ]
+    }
+  }
+}

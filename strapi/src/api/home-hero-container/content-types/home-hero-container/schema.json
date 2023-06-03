@@ -1,0 +1,37 @@
+{
+  "kind": "singleType",
+  "collectionName": "home_hero_containers",
+  "info": {
+    "singularName": "home-hero-container",
+    "pluralName": "home-hero-containers",
+    "displayName": "HomeHeroContainer"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "buttonUrl": {
+      "type": "string"
+    },
+    "buttonText": {
+      "type": "string"
+    }
+  }
+}
