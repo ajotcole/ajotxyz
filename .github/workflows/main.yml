@@ -48,7 +48,7 @@ jobs:
         uses: actions/upload-artifact@master
         with:
           name: ajotxyz-artifact
-          path: dist
+          path: frontend/dist
 
   deploy-frontend:
     runs-on: ubuntu-latest
@@ -60,7 +60,7 @@ jobs:
         uses: actions/download-artifact@master
         with:
           name: ajotxyz-artifact
-          path: dist
+          path: frontend/dist
       - name: Setup Tailscale
         id: tailscale
         uses: tailscale/github-action@main
@@ -116,7 +116,7 @@ jobs:
       - name: Build image and push to Docker Hub
         uses: docker/build-push-action@v2
         with:
-          context: ./api
+          context: ./strapi
           tags: |
             ajotcole/ajotxyz-strapi:latest
           push: ${{ github.ref == 'refs/heads/main' }}
