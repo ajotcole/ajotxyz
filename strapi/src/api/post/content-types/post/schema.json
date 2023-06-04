@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "posts",
+  "info": {
+    "singularName": "post",
+    "pluralName": "posts",
+    "displayName": "Post",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "Misc"
+      ]
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "dynamicZone": {
+      "type": "dynamiczone",
+      "components": [
+        "image.image-single",
+        "image.image-slider",
+        "text.rich-text"
+      ]
+    }
+  }
+}
