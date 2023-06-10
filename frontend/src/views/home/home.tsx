@@ -13,99 +13,31 @@ import {
   Box,
   Spinner,
 } from '@chakra-ui/react';
-import { CgMailForward } from 'react-icons/cg';
 import { ArticleGrid } from '../../components/articleGrid.tsx/articleGrid';
-import { useState, useEffect } from 'react';
-import { ArticlesService } from '../../api/articlesService';
+import { useState } from 'react';
 import { IArticle } from '../../models/IArticle';
 import { IHomeHero } from '../../models/IHomeHero';
+import { useQuery } from '@apollo/client';
+import { Post, PostEntityResponse, PostEntityResponseCollection } from '../../models/__generated__/graphql';
+import { GET_POSTS } from '../../models/graphQLrequests';
+import { HomeHero } from '../../components/homeHero/homeHero';
+
+// TODO make better
+interface PostsGQLResponse {
+  posts: PostEntityResponseCollection;
+}
 
 export const Home = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isHomeHeroLoaded, setIsHomeHeroLoaded] = useState(false);
-  const [articles, setArticles] = useState<IArticle[]>([]);
-  const [homeHero, setHomeHero] = useState<IHomeHero>();
+  const { loading, error, data } = useQuery<PostsGQLResponse>(GET_POSTS);
 
-  // TODO improve loading
-  useEffect(() => {
-    (async () => {
-      setArticles(await ArticlesService.getAllArticles());
-      setIsLoaded(true);
-    })();
-  }, []);
-
-  useEffect(() => {
-    (async () => {
-      setHomeHero(await ArticlesService.getHomeHeroData());
-      setIsHomeHeroLoaded(true);
-    })();
-  }, []);
+  console.log(data);
 
   return (
     <>
       <Flex marginBottom="20px">
         <Spacer />
         <Center>
-          {/* TODO move to its own component */}
-          {isHomeHeroLoaded ? (
-            <Card
-              boxShadow="sm"
-              direction={{ base: 'column', sm: 'row' }}
-              style={{
-                width: '600px',
-                backgroundColor: useColorModeValue('#e7ecef', '#282828'),
-                border: 0,
-                borderRadius: '15px',
-                marginTop: '15px',
-              }}
-              overflow="hidden"
-            >
-              <Stack>
-                <CardBody>
-                  <Text
-                    style={{
-                      textTransform: 'uppercase',
-                      fontFamily: 'Karla',
-                      letterSpacing: '2px',
-                      fontSize: '14px',
-                    }}
-                  >
-                    Featured Article
-                  </Text>
-                  <Text
-                    style={{
-                      fontFamily: 'DM Serif Display',
-                      fontSize: '36px',
-                      lineHeight: '36px',
-                    }}
-                  >
-                    {homeHero?.title}
-                  </Text>
-                  <Text
-                    style={{
-                      fontFamily: 'Titillium Web',
-                      fontSize: '18px',
-                    }}
-                  >
-                    {homeHero?.description}
-                  </Text>
-                </CardBody>
-                <CardFooter>
-                  <Button rightIcon={<CgMailForward size={28} />} variant="ghost" onClick={() => window.open(homeHero?.buttonUrl, '_self')}>
-                    {homeHero?.buttonText}
-                  </Button>
-                </CardFooter>
-              </Stack>
-              <Image
-                objectFit="cover"
-                maxW={{ base: '100%', sm: '200px' }}
-                maxH={{ base: '200px', sm: '100%' }}
-                src={homeHero?.image ? `https://strapi.ajot.dev${homeHero?.image}` : 'https://picsum.photos/1000'}
-              />
-            </Card>
-          ) : (
-            <Spinner />
-          )}
+          <HomeHero />
         </Center>
         <Spacer />
       </Flex>
@@ -131,7 +63,9 @@ export const Home = () => {
               marginBottom: '1em',
             }}
           />
-          {isLoaded ? <ArticleGrid articles={articles} /> : <Spinner />}
+          {loading && <Spinner />}
+          {error && <p>TODO posts error</p>}
+          {data && <ArticleGrid articles={data.posts.data} />}
         </Box>
         <Spacer />
       </Flex>

@@ -31,6 +31,11 @@
         "image.image-slider",
         "text.rich-text"
       ]
+    },
+    "author": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "admin::user"
     }
   }
 }

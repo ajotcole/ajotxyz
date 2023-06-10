@@ -1,9 +1,9 @@
 import { Card, CardBody, SimpleGrid, Image, Text, useColorModeValue } from '@chakra-ui/react';
 import { CgCalendarDates } from 'react-icons/cg';
 import { formatDate } from '../../utility';
-import { IArticle } from '../../models/IArticle';
+import { PostEntity } from '../../models/__generated__/graphql';
 
-export const ArticleGrid: React.FC<{ articles: IArticle[] }> = ({ articles }) => {
+export const ArticleGrid: React.FC<{ articles: PostEntity[] }> = ({ articles }) => {
   console.log(articles);
   return (
     <SimpleGrid columns={3} minChildWidth="160px" spacingX="20px" spacingY="20px">
@@ -22,7 +22,7 @@ export const ArticleGrid: React.FC<{ articles: IArticle[] }> = ({ articles }) =>
             objectFit="cover"
             maxH={'100px'}
             maxW={'100%'}
-            src={article.cardCover ? `https://strapi.ajot.dev${article.cardCover}` : 'https://picsum.photos/1000'}
+            src={false ? `https://strapi.ajot.dev${article.id}` : 'https://picsum.photos/1000'}
           />
           <CardBody>
             <Text
@@ -33,7 +33,7 @@ export const ArticleGrid: React.FC<{ articles: IArticle[] }> = ({ articles }) =>
                 fontSize: '14px',
               }}
             >
-              {article.category}
+              {article.attributes?.category}
             </Text>
             <Text
               style={{
@@ -42,7 +42,7 @@ export const ArticleGrid: React.FC<{ articles: IArticle[] }> = ({ articles }) =>
                 lineHeight: '30px',
               }}
             >
-              {article.title}
+              {article.attributes?.title}
             </Text>
             <div
               style={{
@@ -67,7 +67,7 @@ export const ArticleGrid: React.FC<{ articles: IArticle[] }> = ({ articles }) =>
                   marginRight: '0.5em',
                 }}
               />
-              {formatDate(article.created)}
+              {/* TODO {formatDate(article.attributes?.createdAt)} */}
             </Text>
           </CardBody>
         </Card>

@@ -16,19 +16,6 @@ export const ViewSinglePost = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [item, setItem] = useState<IArticle>();
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const data = await ArticlesService.getSingleArticle(id);
-
-        setItem(data);
-        setIsLoaded(true);
-      } catch (e) {
-        console.error(e);
-      }
-    })();
-  }, []);
-
   document.title = `AJOT.XYZ - ${item?.title}`;
 
   return (
