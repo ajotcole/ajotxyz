@@ -1,24 +1,7 @@
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  Center,
-  Flex,
-  Text,
-  Spacer,
-  Stack,
-  Image,
-  useColorModeValue,
-  Box,
-  Spinner,
-} from '@chakra-ui/react';
+import { Center, Flex, Text, Spacer, useColorModeValue, Box, Spinner } from '@chakra-ui/react';
 import { ArticleGrid } from '../../components/articleGrid.tsx/articleGrid';
-import { useState } from 'react';
-import { IArticle } from '../../models/IArticle';
-import { IHomeHero } from '../../models/IHomeHero';
 import { useQuery } from '@apollo/client';
-import { Post, PostEntityResponse, PostEntityResponseCollection } from '../../models/__generated__/graphql';
+import { PostEntityResponseCollection } from '../../models/__generated__/graphql';
 import { GET_POSTS } from '../../models/graphQLrequests';
 import { HomeHero } from '../../components/homeHero/homeHero';
 
@@ -43,7 +26,7 @@ export const Home = () => {
       </Flex>
       <Flex marginBottom="20px">
         <Spacer />
-        <Box>
+        <Box minW="500px">
           <Text
             style={{
               textTransform: 'uppercase',

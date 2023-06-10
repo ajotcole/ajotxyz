@@ -35,7 +35,7 @@ export const Navbar = () => {
           ajot.xyz
         </Heading>
         <Badge style={{ marginLeft: '5px' }} colorScheme="blue">
-          WIP
+          {import.meta.env.VITE_STAGE}
         </Badge>
       </Center>
       <Spacer />
