@@ -1,5 +1,5 @@
 import { CgMailForward } from 'react-icons/cg';
-import { Button, Card, CardBody, CardFooter, Spinner, Stack, useColorModeValue, Text, Image } from '@chakra-ui/react';
+import { Button, Card, CardBody, CardFooter, Spinner, Stack, useColorModeValue, Text, Image, HStack } from '@chakra-ui/react';
 import { useQuery } from '@apollo/client';
 import { HomeHeroEntityResponse } from '../../models/__generated__/graphql';
 import { GET_HOMEHERO } from '../../models/graphQLrequests';
@@ -17,12 +17,12 @@ export const HomeHero = () => {
       {loading && <Spinner />}
       {error && <p>TODO error message</p>}
       {data && (
-        <Stack>
+        <>
           <Card
             boxShadow="sm"
             direction={{ base: 'column', sm: 'row' }}
             style={{
-              width: '600px',
+              width: '100%',
               backgroundColor: useColorModeValue('#e7ecef', '#282828'),
               border: 0,
               borderRadius: '15px',
@@ -30,6 +30,13 @@ export const HomeHero = () => {
             }}
             overflow="hidden"
           >
+            <Image
+              objectFit="cover"
+              maxW={{ base: '100%', sm: '200px' }}
+              maxH={{ base: '200px', sm: '100%' }}
+              // TODO add image url
+              src="https://picsum.photos/1000"
+            />
             <Stack>
               <CardBody>
                 <Text
@@ -67,15 +74,8 @@ export const HomeHero = () => {
                 </Button>
               </CardFooter>
             </Stack>
-            <Image
-              objectFit="cover"
-              maxW={{ base: '100%', sm: '200px' }}
-              maxH={{ base: '200px', sm: '100%' }}
-              // TODO add image url
-              src="https://picsum.photos/1000"
-            />
           </Card>
-        </Stack>
+        </>
       )}
     </>
   );

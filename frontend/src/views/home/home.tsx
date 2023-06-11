@@ -19,14 +19,24 @@ export const Home = () => {
     <>
       <Flex marginBottom="20px">
         <Spacer />
-        <Center>
+        <Center
+          minW={{
+            base: '100%',
+            sm: '600px',
+          }}
+        >
           <HomeHero />
         </Center>
         <Spacer />
       </Flex>
       <Flex marginBottom="20px">
         <Spacer />
-        <Box minW="500px">
+        <Box
+          minW={{
+            base: '100%',
+            sm: '600px',
+          }}
+        >
           <Text
             style={{
               textTransform: 'uppercase',

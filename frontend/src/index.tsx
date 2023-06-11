@@ -31,7 +31,7 @@ root.render(
           }}
         />
         {/* INFO calc used to fill page fully, if no posts are being shown and footer is on bottom */}
-        <Stack minHeight={'calc(100vh - 98.5px)'}>
+        <Stack minHeight={'calc(100vh - 98.5px)'} padding="0 15px">
           <Router>
             <Switch>
               <Route exact path="/" component={Home} />
