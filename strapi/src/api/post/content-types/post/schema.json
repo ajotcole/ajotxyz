@@ -36,6 +36,23 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "admin::user"
+    },
+    "cardimage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "pages": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::page.page",
+      "mappedBy": "posts"
     }
   }
 }

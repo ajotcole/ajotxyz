@@ -13,8 +13,6 @@ interface PostsGQLResponse {
 export const Home = () => {
   const { loading, error, data } = useQuery<PostsGQLResponse>(GET_POSTS);
 
-  console.log(data);
-
   return (
     <>
       <Flex marginBottom="20px">

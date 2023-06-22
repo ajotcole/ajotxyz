@@ -10,6 +10,7 @@ import { Navbar } from './components/navbar/navbar';
 import { ChakraProvider, Stack } from '@chakra-ui/react';
 import { Home } from './views/home/home';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { Imprint } from './views/imprint/imprint';
 
 const container = document.getElementById('root');
 const root = createRoot(container!);
@@ -36,6 +37,7 @@ root.render(
             <Switch>
               <Route exact path="/" component={Home} />
               <Route path="/articles/:id" component={ViewSinglePost} />
+              <Route path="/imprint" component={Imprint} />
             </Switch>
           </Router>
         </Stack>

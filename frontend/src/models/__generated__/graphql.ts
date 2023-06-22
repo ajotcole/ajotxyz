@@ -1,5 +1,4 @@
 /* eslint-disable */
-import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -21,6 +20,30 @@ export type Scalars = {
   PostDynamicZoneDynamicZoneInput: { input: any; output: any; }
   /** The `Upload` scalar type represents a file upload. */
   Upload: { input: any; output: any; }
+};
+
+export type BlogSetting = {
+  __typename?: 'BlogSetting';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  maintenanceMode?: Maybe<Scalars['Boolean']['output']>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type BlogSettingEntity = {
+  __typename?: 'BlogSettingEntity';
+  attributes?: Maybe<BlogSetting>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
+
+export type BlogSettingEntityResponse = {
+  __typename?: 'BlogSettingEntityResponse';
+  data?: Maybe<BlogSettingEntity>;
+};
+
+export type BlogSettingInput = {
+  maintenanceMode?: InputMaybe<Scalars['Boolean']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
 export type BooleanFilterInput = {
@@ -131,7 +154,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type GenericMorph = ComponentImageImageSingle | ComponentImageImageSlider | ComponentTextRichText | HomeHero | I18NLocale | Post | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = BlogSetting | ComponentImageImageSingle | ComponentImageImageSlider | ComponentTextRichText | HomeHero | I18NLocale | Imprint | Post | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type HomeHero = {
   __typename?: 'HomeHero';
@@ -223,6 +246,32 @@ export type IdFilterInput = {
   startsWith?: InputMaybe<Scalars['ID']['input']>;
 };
 
+export type Imprint = {
+  __typename?: 'Imprint';
+  content?: Maybe<Scalars['String']['output']>;
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+export type ImprintEntity = {
+  __typename?: 'ImprintEntity';
+  attributes?: Maybe<Imprint>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
+
+export type ImprintEntityResponse = {
+  __typename?: 'ImprintEntityResponse';
+  data?: Maybe<ImprintEntity>;
+};
+
+export type ImprintInput = {
+  content?: InputMaybe<Scalars['String']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type IntFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
   between?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
@@ -282,7 +331,9 @@ export type Mutation = {
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  deleteBlogSetting?: Maybe<BlogSettingEntityResponse>;
   deleteHomeHero?: Maybe<HomeHeroEntityResponse>;
+  deleteImprint?: Maybe<ImprintEntityResponse>;
   deletePost?: Maybe<PostEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -301,8 +352,10 @@ export type Mutation = {
   removeFile?: Maybe<UploadFileEntityResponse>;
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
+  updateBlogSetting?: Maybe<BlogSettingEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
   updateHomeHero?: Maybe<HomeHeroEntityResponse>;
+  updateImprint?: Maybe<ImprintEntityResponse>;
   updatePost?: Maybe<PostEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -411,6 +464,11 @@ export type MutationResetPasswordArgs = {
 };
 
 
+export type MutationUpdateBlogSettingArgs = {
+  data: BlogSettingInput;
+};
+
+
 export type MutationUpdateFileInfoArgs = {
   id: Scalars['ID']['input'];
   info?: InputMaybe<FileInfoInput>;
@@ -419,6 +477,11 @@ export type MutationUpdateFileInfoArgs = {
 
 export type MutationUpdateHomeHeroArgs = {
   data: HomeHeroInput;
+};
+
+
+export type MutationUpdateImprintArgs = {
+  data: ImprintInput;
 };
 
 
@@ -533,9 +596,11 @@ export enum PublicationState {
 
 export type Query = {
   __typename?: 'Query';
+  blogSetting?: Maybe<BlogSettingEntityResponse>;
   homeHero?: Maybe<HomeHeroEntityResponse>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
+  imprint?: Maybe<ImprintEntityResponse>;
   me?: Maybe<UsersPermissionsMe>;
   post?: Maybe<PostEntityResponse>;
   posts?: Maybe<PostEntityResponseCollection>;
@@ -547,6 +612,11 @@ export type Query = {
   usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>;
   usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>;
   usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>;
+};
+
+
+export type QueryBlogSettingArgs = {
+  publicationState?: InputMaybe<PublicationState>;
 };
 
 
@@ -564,6 +634,11 @@ export type QueryI18NLocalesArgs = {
   filters?: InputMaybe<I18NLocaleFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+
+export type QueryImprintArgs = {
+  publicationState?: InputMaybe<PublicationState>;
 };
 
 
@@ -1028,11 +1103,3 @@ export type UsersPermissionsUserRelationResponseCollection = {
   __typename?: 'UsersPermissionsUserRelationResponseCollection';
   data: Array<UsersPermissionsUserEntity>;
 };
-
-export type PostsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type PostsQuery = { __typename?: 'Query', posts?: { __typename?: 'PostEntityResponseCollection', data: Array<{ __typename?: 'PostEntity', attributes?: { __typename?: 'Post', title?: string | null } | null }> } | null };
-
-
-export const PostsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Posts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"posts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filters"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"title"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"contains"},"value":{"kind":"StringValue","value":"second post","block":false}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}}]}}]}}]}}]}}]} as unknown as DocumentNode<PostsQuery, PostsQueryVariables>;

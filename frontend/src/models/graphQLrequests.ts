@@ -6,6 +6,9 @@ export const GET_POSTS = gql`
       data {
         attributes {
           title
+          subtitle
+          category
+          createdAt
         }
       }
     }
@@ -25,6 +28,19 @@ export const GET_HOMEHERO = gql`
           updatedAt
           publishedAt
           __typename
+        }
+      }
+    }
+  }
+`;
+
+export const GET_IMPRINT = gql`
+  query Imprint {
+    imprint {
+      data {
+        attributes {
+          title
+          content
         }
       }
     }

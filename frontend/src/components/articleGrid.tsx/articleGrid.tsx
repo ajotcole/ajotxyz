@@ -82,7 +82,7 @@ export const ArticleGrid: React.FC<{ articles: PostEntity[] }> = ({ articles }) 
                     marginRight: '0.5em',
                   }}
                 />
-                {/* TODO {formatDate(article.attributes?.createdAt)} */}
+                {article.attributes?.createdAt}
               </Text>
             </CardBody>
           </Card>
