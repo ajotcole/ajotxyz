@@ -1,8 +1,8 @@
 import { Center, Flex, Text, Spacer, useColorModeValue, Box, Spinner } from '@chakra-ui/react';
 import { ArticleGrid } from '../../components/articleGrid.tsx/articleGrid';
 import { useQuery } from '@apollo/client';
-import { PostEntityResponseCollection } from '../../models/__generated__/graphql';
-import { GET_POSTS } from '../../models/graphQLrequests';
+import { HomeHeroEntityResponse, PostEntityResponseCollection } from '../../models/__generated__/graphql';
+import { GET_HOMEHERO, GET_POSTS } from '../../models/graphQLrequests';
 import { HomeHero } from '../../components/homeHero/homeHero';
 
 // TODO make better
@@ -10,8 +10,14 @@ interface PostsGQLResponse {
   posts: PostEntityResponseCollection;
 }
 
+interface HomeHeroGQLResponse {
+  homeHero: HomeHeroEntityResponse;
+}
+
 export const Home = () => {
-  const { loading, error, data } = useQuery<PostsGQLResponse>(GET_POSTS);
+  const { loading: loadingPosts, error: errorPosts, data: dataPosts } = useQuery<PostsGQLResponse>(GET_POSTS);
+
+  const { loading: loadingHomeHero, error: errorHomeHero, data: dataHomeHero } = useQuery<HomeHeroGQLResponse>(GET_HOMEHERO);
 
   return (
     <>
@@ -23,7 +29,9 @@ export const Home = () => {
             sm: '600px',
           }}
         >
-          <HomeHero />
+          {loadingHomeHero && <Spinner />}
+          {errorHomeHero && <p>TODO posts error</p>}
+          {dataHomeHero && <HomeHero data={dataHomeHero?.homeHero.data} />}
         </Center>
         <Spacer />
       </Flex>
@@ -54,9 +62,9 @@ export const Home = () => {
               marginBottom: '1em',
             }}
           />
-          {loading && <Spinner />}
-          {error && <p>TODO posts error</p>}
-          {data && <ArticleGrid articles={data.posts.data} />}
+          {loadingPosts && <Spinner />}
+          {errorPosts && <p>TODO posts error</p>}
+          {dataPosts && <ArticleGrid articles={dataPosts.posts.data} />}
         </Box>
         <Spacer />
       </Flex>

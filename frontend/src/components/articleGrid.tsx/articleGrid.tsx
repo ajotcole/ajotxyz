@@ -22,7 +22,7 @@ export const ArticleGrid: React.FC<{ articles: PostEntity[] }> = ({ articles }) 
         </Center>
       )}
       {articles.length > 0 &&
-        articles.map((article) => (
+        articles.map((article, index) => (
           <Card
             onClick={() => window.open(`/articles/${article.id}`, '_self')}
             cursor="pointer"
@@ -31,7 +31,7 @@ export const ArticleGrid: React.FC<{ articles: PostEntity[] }> = ({ articles }) 
             boxShadow="sm"
             minW="180px"
             backgroundColor={useColorModeValue('#FDEFD5', '#4d4941')}
-            key={article.id}
+            key={index}
           >
             <Image
               objectFit="cover"

@@ -1,21 +1,10 @@
 import { CgMailForward } from 'react-icons/cg';
-import { Button, Card, CardBody, CardFooter, Spinner, Stack, useColorModeValue, Text, Image, HStack } from '@chakra-ui/react';
-import { useQuery } from '@apollo/client';
-import { HomeHeroEntityResponse } from '../../models/__generated__/graphql';
-import { GET_HOMEHERO } from '../../models/graphQLrequests';
+import { Button, Card, CardBody, CardFooter, Stack, useColorModeValue, Text, Image } from '@chakra-ui/react';
+import { HomeHeroEntity, Maybe } from '../../models/__generated__/graphql';
 
-// TODO make better
-interface HomeHeroGQLResponse {
-  homeHero: HomeHeroEntityResponse;
-}
-
-export const HomeHero = () => {
-  const { loading, error, data } = useQuery<HomeHeroGQLResponse>(GET_HOMEHERO);
-
+export const HomeHero: React.FC<{ data: Maybe<HomeHeroEntity> | undefined }> = (data) => {
   return (
     <>
-      {loading && <Spinner />}
-      {error && <p>TODO error message</p>}
       {data && (
         <>
           <Card
@@ -56,7 +45,7 @@ export const HomeHero = () => {
                     lineHeight: '36px',
                   }}
                 >
-                  {data.homeHero.data?.attributes?.title}
+                  {data.data?.attributes?.title}
                 </Text>
                 <Text
                   style={{
@@ -64,13 +53,13 @@ export const HomeHero = () => {
                     fontSize: '18px',
                   }}
                 >
-                  {data.homeHero.data?.attributes?.content}
+                  {data.data?.attributes?.content}
                 </Text>
               </CardBody>
               <CardFooter>
                 {/* TODO add url to article logic */}
                 <Button rightIcon={<CgMailForward size={28} />} variant="ghost" onClick={() => window.open('TODO', '_self')}>
-                  {data.homeHero.data?.attributes?.linkText}
+                  {data.data?.attributes?.linkText}
                 </Button>
               </CardFooter>
             </Stack>
