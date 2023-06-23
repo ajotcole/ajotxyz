@@ -154,7 +154,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type GenericMorph = BlogSetting | ComponentImageImageSingle | ComponentImageImageSlider | ComponentTextRichText | HomeHero | I18NLocale | Imprint | Post | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type GenericMorph = BlogSetting | ComponentImageImageSingle | ComponentImageImageSlider | ComponentTextRichText | HomeHero | I18NLocale | Imprint | Page | Post | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type HomeHero = {
   __typename?: 'HomeHero';
@@ -324,6 +324,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
+  createPage?: Maybe<PageEntityResponse>;
   createPost?: Maybe<PostEntityResponse>;
   createUploadFile?: Maybe<UploadFileEntityResponse>;
   createUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -334,6 +335,7 @@ export type Mutation = {
   deleteBlogSetting?: Maybe<BlogSettingEntityResponse>;
   deleteHomeHero?: Maybe<HomeHeroEntityResponse>;
   deleteImprint?: Maybe<ImprintEntityResponse>;
+  deletePage?: Maybe<PageEntityResponse>;
   deletePost?: Maybe<PostEntityResponse>;
   deleteUploadFile?: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -356,6 +358,7 @@ export type Mutation = {
   updateFileInfo: UploadFileEntityResponse;
   updateHomeHero?: Maybe<HomeHeroEntityResponse>;
   updateImprint?: Maybe<ImprintEntityResponse>;
+  updatePage?: Maybe<PageEntityResponse>;
   updatePost?: Maybe<PostEntityResponse>;
   updateUploadFile?: Maybe<UploadFileEntityResponse>;
   updateUploadFolder?: Maybe<UploadFolderEntityResponse>;
@@ -371,6 +374,11 @@ export type MutationChangePasswordArgs = {
   currentPassword: Scalars['String']['input'];
   password: Scalars['String']['input'];
   passwordConfirmation: Scalars['String']['input'];
+};
+
+
+export type MutationCreatePageArgs = {
+  data: PageInput;
 };
 
 
@@ -396,6 +404,11 @@ export type MutationCreateUsersPermissionsRoleArgs = {
 
 export type MutationCreateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput;
+};
+
+
+export type MutationDeletePageArgs = {
+  id: Scalars['ID']['input'];
 };
 
 
@@ -485,6 +498,12 @@ export type MutationUpdateImprintArgs = {
 };
 
 
+export type MutationUpdatePageArgs = {
+  data: PageInput;
+  id: Scalars['ID']['input'];
+};
+
+
 export type MutationUpdatePostArgs = {
   data: PostInput;
   id: Scalars['ID']['input'];
@@ -523,6 +542,63 @@ export type MutationUploadArgs = {
   refId?: InputMaybe<Scalars['ID']['input']>;
 };
 
+export type Page = {
+  __typename?: 'Page';
+  createdAt?: Maybe<Scalars['DateTime']['output']>;
+  pagename?: Maybe<Scalars['String']['output']>;
+  posts?: Maybe<PostRelationResponseCollection>;
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type PagePostsArgs = {
+  filters?: InputMaybe<PostFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type PageEntity = {
+  __typename?: 'PageEntity';
+  attributes?: Maybe<Page>;
+  id?: Maybe<Scalars['ID']['output']>;
+};
+
+export type PageEntityResponse = {
+  __typename?: 'PageEntityResponse';
+  data?: Maybe<PageEntity>;
+};
+
+export type PageEntityResponseCollection = {
+  __typename?: 'PageEntityResponseCollection';
+  data: Array<PageEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type PageFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<PageFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  not?: InputMaybe<PageFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<PageFiltersInput>>>;
+  pagename?: InputMaybe<StringFilterInput>;
+  posts?: InputMaybe<PostFiltersInput>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type PageInput = {
+  pagename?: InputMaybe<Scalars['String']['input']>;
+  posts?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type PageRelationResponseCollection = {
+  __typename?: 'PageRelationResponseCollection';
+  data: Array<PageEntity>;
+};
+
 export type Pagination = {
   __typename?: 'Pagination';
   page: Scalars['Int']['output'];
@@ -540,13 +616,23 @@ export type PaginationArg = {
 
 export type Post = {
   __typename?: 'Post';
+  cardimage?: Maybe<UploadFileEntityResponse>;
   category?: Maybe<Enum_Post_Category>;
   createdAt?: Maybe<Scalars['DateTime']['output']>;
   dynamicZone?: Maybe<Array<Maybe<PostDynamicZoneDynamicZone>>>;
+  pages?: Maybe<PageRelationResponseCollection>;
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   subtitle?: Maybe<Scalars['String']['output']>;
   title?: Maybe<Scalars['String']['output']>;
   updatedAt?: Maybe<Scalars['DateTime']['output']>;
+};
+
+
+export type PostPagesArgs = {
+  filters?: InputMaybe<PageFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type PostDynamicZoneDynamicZone = ComponentImageImageSingle | ComponentImageImageSlider | ComponentTextRichText | Error;
@@ -575,6 +661,7 @@ export type PostFiltersInput = {
   id?: InputMaybe<IdFilterInput>;
   not?: InputMaybe<PostFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<PostFiltersInput>>>;
+  pages?: InputMaybe<PageFiltersInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
   subtitle?: InputMaybe<StringFilterInput>;
   title?: InputMaybe<StringFilterInput>;
@@ -582,11 +669,18 @@ export type PostFiltersInput = {
 };
 
 export type PostInput = {
+  cardimage?: InputMaybe<Scalars['ID']['input']>;
   category?: InputMaybe<Enum_Post_Category>;
   dynamicZone?: InputMaybe<Array<Scalars['PostDynamicZoneDynamicZoneInput']['input']>>;
+  pages?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   subtitle?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type PostRelationResponseCollection = {
+  __typename?: 'PostRelationResponseCollection';
+  data: Array<PostEntity>;
 };
 
 export enum PublicationState {
@@ -602,6 +696,8 @@ export type Query = {
   i18NLocales?: Maybe<I18NLocaleEntityResponseCollection>;
   imprint?: Maybe<ImprintEntityResponse>;
   me?: Maybe<UsersPermissionsMe>;
+  page?: Maybe<PageEntityResponse>;
+  pages?: Maybe<PageEntityResponseCollection>;
   post?: Maybe<PostEntityResponse>;
   posts?: Maybe<PostEntityResponseCollection>;
   uploadFile?: Maybe<UploadFileEntityResponse>;
@@ -639,6 +735,19 @@ export type QueryI18NLocalesArgs = {
 
 export type QueryImprintArgs = {
   publicationState?: InputMaybe<PublicationState>;
+};
+
+
+export type QueryPageArgs = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+
+export type QueryPagesArgs = {
+  filters?: InputMaybe<PageFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 

@@ -16,7 +16,7 @@ const container = document.getElementById('root');
 const root = createRoot(container!);
 
 const client = new ApolloClient({
-  uri: import.meta.env.VITE_GRAPHQL_URL,
+  uri: `${import.meta.env.VITE_STRAPI_URL}/graphql`,
   cache: new InMemoryCache(),
 });
 

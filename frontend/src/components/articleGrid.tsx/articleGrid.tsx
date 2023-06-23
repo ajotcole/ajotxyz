@@ -37,7 +37,11 @@ export const ArticleGrid: React.FC<{ articles: PostEntity[] }> = ({ articles }) 
               objectFit="cover"
               maxH={'100px'}
               maxW={'100%'}
-              src={false ? `https://strapi.ajot.dev${article.id}` : 'https://picsum.photos/1000'}
+              src={
+                article.attributes?.cardimage?.data
+                  ? `${import.meta.env.VITE_STRAPI_URL}${article.attributes.cardimage.data?.attributes?.formats.small.url}`
+                  : 'https://picsum.photos/1000'
+              }
             />
             <CardBody>
               <Text
@@ -82,7 +86,7 @@ export const ArticleGrid: React.FC<{ articles: PostEntity[] }> = ({ articles }) 
                     marginRight: '0.5em',
                   }}
                 />
-                {article.attributes?.createdAt}
+                {formatDate(new Date(article.attributes?.createdAt))}
               </Text>
             </CardBody>
           </Card>
