@@ -34,9 +34,11 @@ export const Navbar = () => {
         >
           ajot.xyz
         </Heading>
-        <Badge style={{ marginLeft: '5px' }} colorScheme="blue">
-          {import.meta.env.VITE_STAGE}
-        </Badge>
+        {import.meta.env.VITE_STAGE !== 'prod' && (
+          <Badge style={{ marginLeft: '5px' }} colorScheme="blue">
+            {import.meta.env.VITE_STAGE}
+          </Badge>
+        )}
       </Center>
       <Spacer />
       <Center>

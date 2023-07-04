@@ -81,7 +81,14 @@ export type ComponentImageImageSlider = {
   __typename?: 'ComponentImageImageSlider';
   description?: Maybe<Scalars['String']['output']>;
   id: Scalars['ID']['output'];
-  imageSlider?: Maybe<UploadFileEntityResponse>;
+  imageSlider?: Maybe<UploadFileRelationResponseCollection>;
+};
+
+
+export type ComponentImageImageSliderImageSliderArgs = {
+  filters?: InputMaybe<UploadFileFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
 export type ComponentTextRichText = {

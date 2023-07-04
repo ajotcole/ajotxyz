@@ -35,6 +35,33 @@ export const GET_SINGLE_POST = gql`
           subtitle
           dynamicZone {
             __typename
+            ... on ComponentImageImageSingle {
+              singleImage {
+                data {
+                  attributes {
+                    url
+                    formats
+                  }
+                }
+              }
+              description
+            }
+            __typename
+            ... on ComponentImageImageSlider {
+              description
+              imageSlider {
+                data {
+                  attributes {
+                    url
+                    formats
+                  }
+                }
+              }
+            }
+            __typename
+            ... on ComponentTextRichText {
+              richText
+            }
           }
         }
       }

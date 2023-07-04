@@ -9,7 +9,12 @@ import { ArticlesService } from '../../api/articlesService';
 import { formatDate } from '../../utility';
 import styles from './ViewSinglePost.module.scss';
 import { Center, Flex, HStack, Spacer, Spinner, Stack, useColorModeValue } from '@chakra-ui/react';
-import { PostEntityResponse } from '../../models/__generated__/graphql';
+import {
+  ComponentImageImageSingle,
+  ComponentImageImageSlider,
+  ComponentTextRichText,
+  PostEntityResponse,
+} from '../../models/__generated__/graphql';
 import { useQuery } from '@apollo/client';
 import { GET_SINGLE_POST } from '../../models/graphQLrequests';
 
@@ -25,6 +30,8 @@ export const ViewSinglePost = () => {
   });
 
   document.title = `AJOT.XYZ - ${data?.post.data?.attributes?.title}`;
+
+  console.log(data);
 
   return (
     <div className={styles.articleContainer}>
@@ -54,7 +61,16 @@ export const ViewSinglePost = () => {
               AJ Cole
             </Center>
           </Flex>
-          {/* {data.post.data?.attributes?.dynamicZone && data.post.data?.attributes?.dynamicZone.map((x: IDynamicZone, i: number) => <ContentRenderer dynamicZone={x} key={i} />)} */}
+          {data.post.data?.attributes?.dynamicZone &&
+            data.post.data?.attributes?.dynamicZone.map((item, index) => {
+              if (item?.__typename === 'ComponentTextRichText') {
+                return <ContentRenderer component={item} key={index} />;
+              } else if (item?.__typename === 'ComponentImageImageSingle') {
+                return <ContentRenderer component={item} key={index} />;
+              } else if (item?.__typename === 'ComponentImageImageSlider') {
+                return <ContentRenderer component={item} key={index} />;
+              }
+            })}
           {/* 
           TODO fix theming and else sometime
           
