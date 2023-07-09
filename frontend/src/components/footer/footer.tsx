@@ -14,7 +14,6 @@ import {
   useColorModeValue,
   useDisclosure,
 } from '@chakra-ui/react';
-import dsgvoText from '../../assets/dsgvo';
 
 import styles from './footer.module.scss';
 export const Footer = () => {
@@ -34,7 +33,7 @@ export const Footer = () => {
         <Spacer />
         <Center>
           <Text
-            onClick={onOpen}
+            onClick={() => window.open('/imprint', '_self')}
             style={{
               color: '#fff',
               textTransform: 'uppercase',
@@ -61,17 +60,6 @@ export const Footer = () => {
         </Center>
         <Spacer />
       </Flex>
-
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Impressum</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <div dangerouslySetInnerHTML={{ __html: dsgvoText }} />
-          </ModalBody>
-        </ModalContent>
-      </Modal>
     </footer>
   );
 };

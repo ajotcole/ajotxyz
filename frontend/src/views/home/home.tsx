@@ -1,117 +1,52 @@
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  Center,
-  Flex,
-  Text,
-  Spacer,
-  Stack,
-  Image,
-  useColorModeValue,
-  Box,
-  Spinner,
-} from '@chakra-ui/react';
-import { CgMailForward } from 'react-icons/cg';
+import { Center, Flex, Text, Spacer, useColorModeValue, Box, Spinner } from '@chakra-ui/react';
 import { ArticleGrid } from '../../components/articleGrid.tsx/articleGrid';
-import { useState, useEffect } from 'react';
-import { ArticlesService } from '../../api/articlesService';
-import { IArticle } from '../../models/IArticle';
-import { IHomeHero } from '../../models/IHomeHero';
+import { useQuery } from '@apollo/client';
+import { HomeHeroEntityResponse, PostEntityResponseCollection } from '../../models/__generated__/graphql';
+import { GET_HOMEHERO, GET_POSTS } from '../../models/graphQLrequests';
+import { HomeHero } from '../../components/homeHero/homeHero';
+
+// TODO make better
+interface PostsGQLResponse {
+  posts: PostEntityResponseCollection;
+}
+
+interface HomeHeroGQLResponse {
+  homeHero: HomeHeroEntityResponse;
+}
 
 export const Home = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isHomeHeroLoaded, setIsHomeHeroLoaded] = useState(false);
-  const [articles, setArticles] = useState<IArticle[]>([]);
-  const [homeHero, setHomeHero] = useState<IHomeHero>();
+  const { loading: loadingPosts, error: errorPosts, data: dataPosts } = useQuery<PostsGQLResponse>(GET_POSTS);
 
-  // TODO improve loading
-  useEffect(() => {
-    (async () => {
-      setArticles(await ArticlesService.getAllArticles());
-      setIsLoaded(true);
-    })();
-  }, []);
-
-  useEffect(() => {
-    (async () => {
-      setHomeHero(await ArticlesService.getHomeHeroData());
-      setIsHomeHeroLoaded(true);
-    })();
-  }, []);
+  const { loading: loadingHomeHero, error: errorHomeHero, data: dataHomeHero } = useQuery<HomeHeroGQLResponse>(GET_HOMEHERO);
 
   return (
     <>
       <Flex marginBottom="20px">
         <Spacer />
-        <Center>
-          {/* TODO move to its own component */}
-          {isHomeHeroLoaded ? (
-            <Card
-              boxShadow="sm"
-              direction={{ base: 'column', sm: 'row' }}
-              style={{
-                width: '600px',
-                backgroundColor: useColorModeValue('#e7ecef', '#282828'),
-                border: 0,
-                borderRadius: '15px',
-                marginTop: '15px',
-              }}
-              overflow="hidden"
-            >
-              <Stack>
-                <CardBody>
-                  <Text
-                    style={{
-                      textTransform: 'uppercase',
-                      fontFamily: 'Karla',
-                      letterSpacing: '2px',
-                      fontSize: '14px',
-                    }}
-                  >
-                    Featured Article
-                  </Text>
-                  <Text
-                    style={{
-                      fontFamily: 'DM Serif Display',
-                      fontSize: '36px',
-                      lineHeight: '36px',
-                    }}
-                  >
-                    {homeHero?.title}
-                  </Text>
-                  <Text
-                    style={{
-                      fontFamily: 'Titillium Web',
-                      fontSize: '18px',
-                    }}
-                  >
-                    {homeHero?.description}
-                  </Text>
-                </CardBody>
-                <CardFooter>
-                  <Button rightIcon={<CgMailForward size={28} />} variant="ghost" onClick={() => window.open(homeHero?.buttonUrl, '_self')}>
-                    {homeHero?.buttonText}
-                  </Button>
-                </CardFooter>
-              </Stack>
-              <Image
-                objectFit="cover"
-                maxW={{ base: '100%', sm: '200px' }}
-                maxH={{ base: '200px', sm: '100%' }}
-                src={homeHero?.image ? `https://strapi.ajot.dev${homeHero?.image}` : 'https://picsum.photos/1000'}
-              />
-            </Card>
-          ) : (
-            <Spinner />
+        <Center
+          minW={{
+            base: '100%',
+            sm: '600px',
+          }}
+        >
+          {loadingHomeHero && (
+            <Center>
+              <Spinner margin={'30px 0'} />
+            </Center>
           )}
+          {errorHomeHero && <p>TODO posts error</p>}
+          {dataHomeHero && <HomeHero data={dataHomeHero?.homeHero.data} />}
         </Center>
         <Spacer />
       </Flex>
       <Flex marginBottom="20px">
         <Spacer />
-        <Box>
+        <Box
+          minW={{
+            base: '100%',
+            sm: '600px',
+          }}
+        >
           <Text
             style={{
               textTransform: 'uppercase',
@@ -131,7 +66,13 @@ export const Home = () => {
               marginBottom: '1em',
             }}
           />
-          {isLoaded ? <ArticleGrid articles={articles} /> : <Spinner />}
+          {loadingPosts && (
+            <Center>
+              <Spinner margin={'30px 0'} />
+            </Center>
+          )}
+          {errorPosts && <p>TODO posts error</p>}
+          {dataPosts && <ArticleGrid articles={dataPosts.posts.data} />}
         </Box>
         <Spacer />
       </Flex>

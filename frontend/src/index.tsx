@@ -1,40 +1,51 @@
 import { createRoot } from 'react-dom/client';
 import './index.scss';
-import { HomeView } from './views/HomeView/HomeView';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { ViewSinglePost } from './views/ViewSinglePost/ViewSinglePost';
+import { SinglePost } from './views/singlePost/singlePost';
 import { Footer } from './components/footer/footer';
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
 import React from 'react';
 import { Navbar } from './components/navbar/navbar';
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider, Stack } from '@chakra-ui/react';
 import { Home } from './views/home/home';
-
-// TODO make below dynamic
-export const versionNumber = '1.1.0.1';
-export const changedDate = '12.03.2022';
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { Imprint } from './views/imprint/imprint';
+import { NotFound } from './views/notFound/notFound';
 
 const container = document.getElementById('root');
 const root = createRoot(container!);
 
+const client = new ApolloClient({
+  uri: `${import.meta.env.VITE_STRAPI_URL}/graphql`,
+  cache: new InMemoryCache(),
+});
+
 root.render(
   <React.StrictMode>
-    <ChakraProvider>
-      <Navbar />
-      <div
-        style={{
-          display: 'block',
-          height: '50.5px',
-        }}
-      />
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/articles/:id" component={ViewSinglePost} />
-        </Switch>
-      </Router>
-      <Footer />
-    </ChakraProvider>
+    <ApolloProvider client={client}>
+      <ChakraProvider>
+        <Navbar />
+        <div
+          style={{
+            display: 'block',
+            height: '50.5px',
+          }}
+        />
+        {/* INFO calc used to fill page fully, if no posts are being shown and footer is on bottom */}
+        <Stack minHeight={'calc(100vh - 98.5px)'} padding="0 15px">
+          <Router>
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/articles/:id" component={SinglePost} />
+              <Route path="/imprint" component={Imprint} />
+              <Route path="*" component={NotFound} />
+            </Switch>
+          </Router>
+        </Stack>
+
+        <Footer />
+      </ChakraProvider>
+    </ApolloProvider>
   </React.StrictMode>,
 );
