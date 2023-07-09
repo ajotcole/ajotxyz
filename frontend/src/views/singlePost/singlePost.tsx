@@ -1,20 +1,10 @@
-import { DiscussionEmbed } from 'disqus-react';
-import { useEffect, useState } from 'react';
 import { CgCalendarDates, CgUser } from 'react-icons/cg';
 import { useParams } from 'react-router-dom';
 import { ContentRenderer } from '../../components/contentRenderer/contentRenderer';
-import { IArticle } from '../../models/IArticle';
-import { IDynamicZone } from '../../models/IDynamicZone';
-import { ArticlesService } from '../../api/articlesService';
 import { formatDate } from '../../utility';
-import styles from './ViewSinglePost.module.scss';
-import { Center, Flex, HStack, Spacer, Spinner, Stack, useColorModeValue } from '@chakra-ui/react';
-import {
-  ComponentImageImageSingle,
-  ComponentImageImageSlider,
-  ComponentTextRichText,
-  PostEntityResponse,
-} from '../../models/__generated__/graphql';
+import styles from './singlePost.module.scss';
+import { Center, Flex, Spacer, Spinner, Stack, useColorModeValue } from '@chakra-ui/react';
+import { PostEntityResponse } from '../../models/__generated__/graphql';
 import { useQuery } from '@apollo/client';
 import { GET_SINGLE_POST } from '../../models/graphQLrequests';
 
@@ -22,7 +12,7 @@ interface SinglePostGQLResponse {
   post: PostEntityResponse;
 }
 
-export const ViewSinglePost = () => {
+export const SinglePost = () => {
   const { id }: any = useParams();
 
   const { loading, error, data } = useQuery<SinglePostGQLResponse>(GET_SINGLE_POST, {
@@ -35,7 +25,11 @@ export const ViewSinglePost = () => {
 
   return (
     <div className={styles.articleContainer}>
-      {loading && <Spinner />}
+      {loading && (
+        <Center>
+          <Spinner margin={'30px 0'} />
+        </Center>
+      )}
       {error && <p>TODO posts error</p>}
       {data && (
         <Stack className={styles.articleContent}>

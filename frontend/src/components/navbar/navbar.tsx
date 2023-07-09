@@ -1,5 +1,5 @@
-import { MoonIcon, SearchIcon, SunIcon } from '@chakra-ui/icons';
-import { Badge, Button, Center, Flex, Heading, Spacer, useColorMode, useColorModeValue } from '@chakra-ui/react';
+import { LockIcon, MoonIcon, SearchIcon, SunIcon } from '@chakra-ui/icons';
+import { Badge, Button, Center, Flex, Heading, Spacer, Tooltip, useColorMode, useColorModeValue } from '@chakra-ui/react';
 
 export const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
@@ -16,9 +16,16 @@ export const Navbar = () => {
       }}
     >
       <Center>
-        <Button variant="ghost">
-          <SearchIcon />
-        </Button>
+        <Tooltip label="Search coming soon...">
+          <Button isDisabled variant="ghost">
+            <SearchIcon />
+          </Button>
+        </Tooltip>
+        <Tooltip label="Close Circle Feed coming soon...">
+          <Button isDisabled variant="ghost">
+            <LockIcon />
+          </Button>
+        </Tooltip>
       </Center>
       <Spacer />
       <Center>

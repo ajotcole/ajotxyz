@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import './index.scss';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { ViewSinglePost } from './views/ViewSinglePost/ViewSinglePost';
+import { SinglePost } from './views/singlePost/singlePost';
 import { Footer } from './components/footer/footer';
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
@@ -11,6 +11,7 @@ import { ChakraProvider, Stack } from '@chakra-ui/react';
 import { Home } from './views/home/home';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { Imprint } from './views/imprint/imprint';
+import { NotFound } from './views/notFound/notFound';
 
 const container = document.getElementById('root');
 const root = createRoot(container!);
@@ -36,8 +37,9 @@ root.render(
           <Router>
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route path="/articles/:id" component={ViewSinglePost} />
+              <Route path="/articles/:id" component={SinglePost} />
               <Route path="/imprint" component={Imprint} />
+              <Route path="*" component={NotFound} />
             </Switch>
           </Router>
         </Stack>

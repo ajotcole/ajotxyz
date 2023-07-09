@@ -29,7 +29,11 @@ export const Home = () => {
             sm: '600px',
           }}
         >
-          {loadingHomeHero && <Spinner />}
+          {loadingHomeHero && (
+            <Center>
+              <Spinner margin={'30px 0'} />
+            </Center>
+          )}
           {errorHomeHero && <p>TODO posts error</p>}
           {dataHomeHero && <HomeHero data={dataHomeHero?.homeHero.data} />}
         </Center>
@@ -62,7 +66,11 @@ export const Home = () => {
               marginBottom: '1em',
             }}
           />
-          {loadingPosts && <Spinner />}
+          {loadingPosts && (
+            <Center>
+              <Spinner margin={'30px 0'} />
+            </Center>
+          )}
           {errorPosts && <p>TODO posts error</p>}
           {dataPosts && <ArticleGrid articles={dataPosts.posts.data} />}
         </Box>
