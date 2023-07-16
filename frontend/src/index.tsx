@@ -21,6 +21,9 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
+//TODO remove after environement variables work
+console.log(import.meta.env);
+
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>

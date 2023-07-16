@@ -33,6 +33,7 @@
   "scripts": {
     "develop": "vite",
     "build": "vite build",
+    "build:prod": "vite build --mode staging VITE_STRAPI_URL=http://localhost:1337",
     "compileSchema": "graphql-codegen"
   },
   "eslintConfig": {
