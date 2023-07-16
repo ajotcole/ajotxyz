@@ -21,7 +21,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-//TODO remove after environement variables work
+//TODO remove after environement variables work.
 console.log(import.meta.env);
 
 root.render(
